@@ -15,6 +15,7 @@ class LaboratoriosController extends Controller
     public function index()
     {
         //
+        return view('Laboratorios.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class LaboratoriosController extends Controller
     public function create()
     {
         //
+        return view('Laboratorios.crear');
     }
 
     /**
@@ -36,6 +38,10 @@ class LaboratoriosController extends Controller
     public function store(Request $request)
     {
         //
+        $datosLaboratorios=request()->except('_token');
+        Laboratorios::insert($datosLaboratorios);
+
+        return response()->json($datosLaboratorios);
     }
 
     /**

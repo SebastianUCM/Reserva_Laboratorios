@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/Laboratorios','LaboratoriosController@index');
+//Route::get('/Laboratorios/Crear','LaboratoriosController@create');
+Route::resource('Laboratorios', 'LaboratoriosController');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes(['reset'=>false,'forgot'=>false]);
