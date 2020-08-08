@@ -14,8 +14,10 @@ class LaboratoriosController extends Controller
      */
     public function index()
     {
-        //
-        return view('Laboratorios.index');
+        // Retorno los datos a la vista inicio de laboratorio usando paginacion
+        $datos['laboratorios']=Laboratorios::paginate(10);
+        // Retorna la vista de inicio de laboratorios
+        return view('Laboratorios.index',$datos);
     }
 
     /**
@@ -61,8 +63,10 @@ class LaboratoriosController extends Controller
      * @param  \App\Laboratorios  $laboratorios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Laboratorios $laboratorios)
+    public function edit($id)
     {
+        $laboratorio= Laboratorios::findOrFail($id);
+        return view('Laboratorios.editar', compact('laboratorio'));
         //
     }
 
@@ -84,8 +88,10 @@ class LaboratoriosController extends Controller
      * @param  \App\Laboratorios  $laboratorios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laboratorios $laboratorios)
+    public function destroy($id)
     {
         //
+        Laboratorios::destroy($id);
+        return redirect('laboratorios');
     }
 }

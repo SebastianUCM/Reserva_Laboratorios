@@ -14,7 +14,7 @@ class CreateLaboratoriosTable extends Migration
     public function up()
     {
         Schema::create('laboratorios', function (Blueprint $table) {
-            $table->increments('Id');
+            $table->increments('id');
             $table->string('Nombre');
             $table->string('Carrera');
             $table->integer('Capacidad');
