@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Laboratorios;
+use App\Carrera;
 use Illuminate\Http\Request;
 
 class LaboratoriosController extends Controller
@@ -14,10 +15,9 @@ class LaboratoriosController extends Controller
      */
     public function index()
     {
-        // Retorno los datos a la vista inicio de laboratorio usando paginacion
-        $datos['laboratorios']=Laboratorios::paginate(10);
-        // Retorna la vista de inicio de laboratorios
-        return view('Laboratorios.index',$datos);
+        $laboratorios = Laboratorios::all();
+        $carreras = Carrera::all();
+        return view('laboratorios.index',compact('laboratorios','carreras'));
     }
 
     /**
@@ -27,8 +27,11 @@ class LaboratoriosController extends Controller
      */
     public function create()
     {
-        //
-        return view('Laboratorios.crear');
+        $laboratorios = Laboratorios::all();
+        $carreras = Carrera::all();
+        return view('laboratorios.crear',compact('laboratorios','carreras'));
+
+
     }
 
     /**

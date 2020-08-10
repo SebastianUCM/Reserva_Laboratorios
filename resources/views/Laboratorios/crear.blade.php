@@ -27,9 +27,14 @@
 
                         <div class="form-group row">
                             <label for="Carrera" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
+                            <select name="codigo" id="codigo" size=1>
+                                @foreach($carreras as $carrera)
+                                    <option value="{{$carrera->codigo}}" >{{$carrera->nombre}}</option> 
+
+                                @endforeach
+                            </select>
 
                             <div class="col-md-6">
-                                <input id="Carrera" type="text" class="form-control @error('name') is-invalid @enderror" name="Carrera" value="{{ old('email') }}" required autocomplete="Carrera">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
