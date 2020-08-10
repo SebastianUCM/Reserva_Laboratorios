@@ -31,9 +31,7 @@
                                 <td>{{$laboratorio->Carrera}}</td>
                                 <td>{{$laboratorio->Capacidad}}</td>
                                 <td>
-                                <form method="post" action="{{url('/Laboratorios/'.$laboratorio->id.'/edit')}}">
-                                {{csrf_field()}}
-                                {{method_field('DELETE')}}
+                                <form method="GET" action="/Laboratorios/{{$laboratorio->id}}/edit">
                                 <button type="submit" class="btn btn-warning">Editar</button>
                                 </form>
                                 </td>
