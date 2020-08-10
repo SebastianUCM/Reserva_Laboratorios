@@ -22,6 +22,8 @@ Route::get('/', function () {
 //Route::get('/Laboratorios/Crear','LaboratoriosController@create');
 Route::resource('Laboratorios', 'LaboratoriosController');
 
+Route::delete('Laboratorios/{id}','LaboratoriosController@destroy')->name('Laboratorios.destroy');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

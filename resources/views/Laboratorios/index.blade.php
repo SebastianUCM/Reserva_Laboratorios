@@ -31,17 +31,15 @@
                                 <td>{{$laboratorio->Carrera}}</td>
                                 <td>{{$laboratorio->Capacidad}}</td>
                                 <td>
-                                <form method="post" action="{{url('/Laboratorios/'.$laboratorio->id.'/edit')}}">
-                                {{csrf_field()}}
-                                {{method_field('DELETE')}}
+                                <form method="GET" action="/Laboratorios/{{$laboratorio->id}}/edit">
                                 <button type="submit" class="btn btn-warning">Editar</button>
                                 </form>
                                 </td>
                                 <td>
-                                <form method="post" action="{{url('/laboratorios/'.$laboratorio->id)}}">
+                                <form method="POST" action="/Laboratorios/{{$laboratorio->id}}">
                                 {{csrf_field()}}
-                                {{method_field('DELETE')}}
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Borrar</button>
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
                                 </form>
                                 </td>
                             </tr>

@@ -43,7 +43,7 @@ class LaboratoriosController extends Controller
         $datosLaboratorios=request()->except('_token');
         Laboratorios::insert($datosLaboratorios);
 
-        return response()->json($datosLaboratorios);
+        return redirect('/Laboratorios');
     }
 
     /**
@@ -88,10 +88,23 @@ class LaboratoriosController extends Controller
      * @param  \App\Laboratorios  $laboratorios
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-        Laboratorios::destroy($id);
-        return redirect('laboratorios');
+    public function destroy($id){
+        $destroy = Laboratorios::destroy($id);
+        
+        if ($destroy){
+            $id=[
+                'status'=>'1',
+                'msg'=>'success'
+            ];
+        
+        }else{
+        
+            $id=[
+                'status'=>'0',
+                'msg'=>'fail'
+            ];
+        
+        }
+        return redirect('/Laboratorios');
     }
 }
