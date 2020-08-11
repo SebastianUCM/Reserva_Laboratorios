@@ -69,7 +69,8 @@ class LaboratoriosController extends Controller
     public function edit($id)
     {
         $laboratorio= Laboratorios::findOrFail($id);
-        return view('Laboratorios.editar', compact('laboratorio'));
+        $carreras = Carrera::all();
+        return view('Laboratorios.editar', compact('laboratorio','carreras'));
         //
     }
 
@@ -82,22 +83,13 @@ class LaboratoriosController extends Controller
      */
     public function update(Request $request,$id)
     {
-        //
-        //
         $nuevoDato=Laboratorios::find($id);
-        //$id->update($request->all());
-
-        //Laboratorios::where('id','=',$id)->update($request->except('_token'));
-        //$id->update($request->all());
-        //$nuevoDato = Laboratorios::find($id);
-        //$nuevoDato = Laboratorios::updated($nuevoDato)
         $nuevoDato->Nombre = $request->Nombre;
-        $nuevoDato->Carrera = $request->Carrera;
+        $nuevoDato->Codigo = $request->Codigo;
         $nuevoDato->Capacidad = $request->Capacidad;
         $nuevoDato->save();
         
         return redirect("Laboratorios");
-        //return view('Laboratorios.editar', compact('laboratorio'));
        
     }
 

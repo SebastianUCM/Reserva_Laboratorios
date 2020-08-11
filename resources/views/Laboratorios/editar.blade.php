@@ -28,17 +28,15 @@ editar laboratorio
                         </div>
 
                         <div class="form-group row">
-                            <label for="Carrera" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
+                            <label for="Codigo" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
+                            <select name="Codigo" id="Codigo" size=1>
+                                @foreach($carreras as $carrera)
+                                    <option value="{{$carrera->codigo}}" >{{$carrera->nombre}}</option> 
 
-                            <div class="col-md-6">
-                                <input id="Carrera" type="text" class="form-control @error('name') is-invalid @enderror" name="Carrera" value="{{ $laboratorio->Carrera }}" required autocomplete="Carrera">
+                                @endforeach
+                            </select>              
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            
                         </div>
 
                         <div class="form-group row">
