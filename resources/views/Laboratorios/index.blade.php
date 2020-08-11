@@ -15,10 +15,11 @@
                     <table class="table table-light ">
                         <thead class="thead-light ">
                             <tr>
-                                <th>#</th>
+                                <th>N°Lista</th>
                                 <th>Nombre</th>
                                 <th>Carrera</th>
                                 <th>Capacidad</th>
+                                <th>Accion</th>
                                 <th>Accion</th>
                                 <th></th>
                             </tr>
@@ -28,7 +29,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$laboratorio->Nombre}}</td>
-                                <td>{{$laboratorio->Carrera}}</td>
+                                <td>{{$laboratorio->Codigo}}</td>
                                 <td>{{$laboratorio->Capacidad}}</td>
                                 <td>
                                 <form method="GET" action="/Laboratorios/{{$laboratorio->id}}/edit">
