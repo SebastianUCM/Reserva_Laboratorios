@@ -21,10 +21,11 @@ Route::get('/', function () {
 //Route::get('/Laboratorios','LaboratoriosController@index');
 //Route::get('/Laboratorios/Crear','LaboratoriosController@create');
 Route::resource('Laboratorios', 'LaboratoriosController');
-
 Route::delete('Laboratorios/{id}','LaboratoriosController@destroy')->name('Laboratorios.destroy');
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes(['reset'=>false,'forgot'=>false]);
+
+
+Route::resource('Usuarios', 'UsuariosController');
+

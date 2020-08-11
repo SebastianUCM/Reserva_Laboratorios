@@ -38,6 +38,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Usuarios">{{ __('Usuarios') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Laboratorios">{{ __('Laboratorios') }}</a>
+                            </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
