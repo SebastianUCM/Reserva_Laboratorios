@@ -27,7 +27,8 @@ class ReservasController extends Controller
      */
     public function create()
     {
-        //
+        $reservas = Reservas::all();
+        return view('reservas.crear',compact('reservas'));
     }
 
     /**
