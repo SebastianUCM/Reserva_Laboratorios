@@ -1,1 +1,79 @@
 Crear Reserva
+
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-white card-dark bg-primary ">{{ __('Crear una Reserva') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ url('/Reservas') }}">
+                    {{ csrf_field() }}
+
+                        <div class="form-group row">
+                            <label for="Fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
+                            <div class="col-md-6">
+                                <input type="date" id="Fecha" class="form-control" name="trip-start" min="2020-08-11" max="2020-12-31">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="Modulo_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Modulo de Inicio') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Modulo_inicio" type="time" class="form-control" name="Modulo_inicio" required autocomplete="Modulo_inicio" autofocus>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="Modulo_fin" class="col-md-4 col-form-label text-md-right">{{ __('Modulo de Termino') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Modulo_fin" type="time" class="form-control" name="Modulo_fin" required autocomplete="Modulo_fin" autofocus>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Motivo" class="col-md-4 col-form-label text-md-right">{{ __('Motivo') }}</label>
+                            <div class="col-md-6">
+                                <input id="Motivo" type="text" class="form-control" name="Motivo" value="{{ old('name') }}" required autocomplete="Motivo" autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Laboratorio_id" class="col-md-4 col-form-label text-md-right">{{ __('Laboratorio') }}</label>
+                            <div class="col-md-6">
+                                <input id="Laboratorio_id" type="text" class="form-control" name="Laboratorio_id" value="{{ old('name') }}" required autocomplete="Laboratorio_id" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
+                            <div class="col-md-6">
+                                <input id="Usuario_id" type="text" class="form-control" name="Usuario_id" value="{{ old('name') }}" required autocomplete="Usuario_id" autofocus>
+                            </div>
+                        </div>
+               
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Crear una Reserva') }}
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

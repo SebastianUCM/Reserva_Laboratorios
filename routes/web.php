@@ -31,3 +31,5 @@ Route::resource('Usuarios', 'UsuariosController');
 
 Route::resource('Reservas', 'ReservasController');
 
+Route::resource('User', 'UsuariosController');
+

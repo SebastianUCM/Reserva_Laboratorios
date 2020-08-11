@@ -12,6 +12,7 @@
                     {{ csrf_field() }}
 
                         <div class="form-group row">
+
                             <label for="Name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Laboratorio') }}</label>
 
                             <div class="col-md-6">
@@ -23,39 +24,31 @@
                                     </span>
                                 @enderror
                             </div>
+
                         </div>
 
                         <div class="form-group row">
-                            <label for="Carrera" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
-                            <select name="codigo" id="codigo" size=1>
-                                @foreach($carreras as $carrera)
-                                    <option value="{{$carrera->codigo}}" >{{$carrera->nombre}}</option> 
 
-                                @endforeach
-                            </select>
+                            <label for="Carrera" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
 
                             <div class="col-md-6">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <select class="form-control" name="codigo" id="codigo" size=1>
+                                    @foreach($carreras as $carrera)
+                                        <option value="{{$carrera->codigo}}" >{{$carrera->nombre}}</option> 
+                                    @endforeach
+                                </select>
                             </div>
+
                         </div>
 
                         <div class="form-group row">
+
                             <label for="Capacidad" class="col-md-4 col-form-label text-md-right">{{ __('Capacidad') }}</label>
 
                             <div class="col-md-6">
                                 <input id="Capacidad" type="interger" class="form-control @error('password') is-invalid @enderror" name="Capacidad" required autocomplete="Capacidad">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
+
                         </div>
 
 
@@ -66,7 +59,9 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
+                    
                 </div>
             </div>
         </div>
