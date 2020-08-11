@@ -40,7 +40,7 @@ class UsuariosController extends Controller
     {
         $datosUsuarios=request()->except('_token');
         User::insert($datosUsuarios);
-        return redirect('/Laboratorios');
+        return redirect('/Usuarios');
     }
 
     /**
