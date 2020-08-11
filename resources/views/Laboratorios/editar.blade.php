@@ -9,9 +9,10 @@ editar laboratorio
                 <div class="card-header text-white card-dark bg-primary "">{{ __('Editar un Laboratorio') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/Laboratorios') }}">
+                    <form method="POST" action="/Laboratorios/{{$laboratorio->id}}">
                     {{ csrf_field() }}
-
+                    @method('PUT')
+                    {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="Name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Laboratorio') }}</label>
 

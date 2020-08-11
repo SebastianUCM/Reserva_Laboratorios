@@ -77,13 +77,24 @@ class LaboratoriosController extends Controller
      * @param  \App\Laboratorios  $laboratorios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Laboratorios $id)
+    public function update(Request $request,$id)
     {
         //
-        $datosLaboratorios=request()->except(['_token','_method']);
-        Laboratorios::where('id','=',$id)->update($datosLaboratorios);
-        $laboratorio= Laboratorios::findOrFail($id);
-        return view('Laboratorios.editar', compact('laboratorio'));
+        //
+        $nuevoDato=Laboratorios::find($id);
+        //$id->update($request->all());
+
+        //Laboratorios::where('id','=',$id)->update($request->except('_token'));
+        //$id->update($request->all());
+        //$nuevoDato = Laboratorios::find($id);
+        //$nuevoDato = Laboratorios::updated($nuevoDato)
+        $nuevoDato->Nombre = $request->Nombre;
+        $nuevoDato->Carrera = $request->Carrera;
+        $nuevoDato->Capacidad = $request->Capacidad;
+        $nuevoDato->save();
+        
+        return redirect("Laboratorios");
+        //return view('Laboratorios.editar', compact('laboratorio'));
        
     }
 
