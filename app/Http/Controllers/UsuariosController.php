@@ -105,7 +105,7 @@ class UsuariosController extends Controller
                 'status'=>'0',
                 'msg'=>'fail'
             ];
-        
+
         }
         return redirect('/Usuarios');
     }
