@@ -15,7 +15,7 @@ home usuario
                 <table class="table table-light ">
                         <thead class="thead-light ">
                             <tr>
-                                <th></th>
+                                <th>N°Lista</th>
                                 <th>Nombre</th>
                                 <th>Correo Electronico</th>
                                 <th>Rol</th>
