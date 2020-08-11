@@ -29,3 +29,5 @@ Auth::routes(['reset'=>false,'forgot'=>false]);
 
 Route::resource('Usuarios', 'UsuariosController');
 
+Route::resource('Reservas', 'ReservasController');
+

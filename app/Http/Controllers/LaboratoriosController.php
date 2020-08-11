@@ -90,7 +90,6 @@ class LaboratoriosController extends Controller
         $nuevoDato->save();
         
         return redirect("Laboratorios");
-       
     }
 
     /**

@@ -29,7 +29,9 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        return view('usuarios.index');
+        $usuarios = User::all();
+
+        return view('usuarios.index',compact('usuarios'));
     }
 
     /**
@@ -50,14 +52,9 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $usuario = new User();
-        $usuario->Nombre =request('Nombre');
-        $usuario->email =request('email');
-        $usuario->password = request('password');
-        $usuario->rol = request('rol');
-        $usuario->save();
-        return redirect('/Usuarios');
+        $datosUsuarios=request()->except('_token');
+        User::insert($datosUsuarios);
+        return redirect('/Laboratorios');
     }
 
     /**
@@ -81,7 +78,8 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario= User::findOrFail($id);
+        return view('Usuarios.editar', compact('usuario'));
     }
 
     /**
@@ -93,7 +91,12 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nuevoDato=User::find($id);
+        $nuevoDato->name = $request->name;
+        $nuevoDato->email = $request->email;
+        $nuevoDato->save();
+        
+        return redirect("Usuarios");
     }
 
     /**
@@ -104,6 +107,22 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroy = User::destroy($id);
+        
+        if ($destroy){
+            $id=[
+                'status'=>'1',
+                'msg'=>'success'
+            ];
+        
+        }else{
+        
+            $id=[
+                'status'=>'0',
+                'msg'=>'fail'
+            ];
+
+        }
+        return redirect('/Usuarios');
     }
 }

@@ -38,13 +38,19 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                            <!-- Reservas -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Reservas">{{ __('Reservas') }}</a>
+                            </li>
+                            <!--  Usuarios -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/Usuarios">{{ __('Usuarios') }}</a>
                             </li>
+                            <!-- Laboratorios -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/Laboratorios">{{ __('Laboratorios') }}</a>
                             </li>
-                        <!-- Authentication Links -->
+                        <!-- Aurentificacion -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
