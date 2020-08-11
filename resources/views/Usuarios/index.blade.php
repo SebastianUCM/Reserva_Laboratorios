@@ -31,7 +31,7 @@ home usuario
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
-                                <td></td>
+                                <td>{{$usuario->rol}}</td>
                                 <td>
                                 <form method="GET" action="/Usuarios/{{$usuario->id}}/edit">
                                 <button type="submit" class="btn btn-warning">Editar</button>

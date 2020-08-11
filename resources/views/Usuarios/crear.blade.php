@@ -6,7 +6,7 @@ crear usuario
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white card-dark bg-primary "">{{ __('Crear un Usuario') }}</div>
+                <div class="card-header text-white card-dark bg-primary ">{{ __('Crear un Usuario') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/Usuarios') }}">
@@ -14,10 +14,8 @@ crear usuario
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -25,8 +23,7 @@ crear usuario
                                 @enderror
                             </div>
                         </div>
-
-<!--email-->
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electronico') }}</label>
 
@@ -41,15 +38,28 @@ crear usuario
                             </div>
                         </div>
 
-<!--rol-->
-<!--Contraseña-->
-
-
+<!--email-->
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
+                            <select name="rol">
+                                <option value="secretario/a">Secretario/a</option> 
+                                <option value="encargado/a" >Encargado/a</option>
+                                <option value="usuario">Usuario</option>
+                            </select>
+                        </div>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

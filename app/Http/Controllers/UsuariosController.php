@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
@@ -13,6 +13,20 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+
+
+
+
     public function index()
     {
         $usuarios = User::all();
@@ -40,7 +54,7 @@ class UsuariosController extends Controller
     {
         $datosUsuarios=request()->except('_token');
         User::insert($datosUsuarios);
-        return redirect('/Laboratorios');
+        return redirect('/Usuarios');
     }
 
     /**
@@ -49,6 +63,8 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function show($id)
     {
         //
