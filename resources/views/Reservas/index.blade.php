@@ -1,8 +1,22 @@
-Idndex Reserva
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
+    <style>
+        .bg 
+        {
+            background: url('/image/blanco.jpg');
+            height: 100%;
+            width: 100%;
+            padding-right: auto;
+            padding-left: auto;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+
+<div class="bg">
+    @extends('layouts.app')
+
+    @section('content')
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
@@ -14,13 +28,13 @@ Idndex Reserva
                 <table class="table table-light ">
                         <thead class="thead-light ">
                             <tr>
-                                <th>N°Lista:</th>
-                                <th>Laboratorio:</th>
-                                <th>Fecha:</th>
-                                <th>Hora Inicio:</th>
-                                <th>Hora Término:</th>
-                                <th>Motivo:</th>
-                                <th>Usuario:</th>
+                                <th>N°Lista</th>
+                                <th>Laboratorio</th>
+                                <th>Fecha</th>
+                                <th>Hora Inicio</th>
+                                <th>Hora Término</th>
+                                <th>Motivo</th>
+                                <th>Usuario</th>
                                 <th>Acción</th>
                                 <th>Acción</th>
 
@@ -35,12 +49,24 @@ Idndex Reserva
                             <td>{{$reserva->Modulo_fin}}</td>
                             <td>{{$reserva->Motivo}}</td>
                             <td>{{$reserva->Usuario}}</td>
+                            <td>
+                                <form method="GET" action="/Reservas/{{$reserva->id}}/edit">
+                                    <button type="submit" class="btn btn-warning">Editar</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="POST" action="/Reservas/{{$reserva->id}}">
+                                    {{csrf_field()}}
+                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
-
                         @endforeach
                     </table>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

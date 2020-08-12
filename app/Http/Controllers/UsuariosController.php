@@ -27,7 +27,7 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(array $data)
+    public function create()
     {
         //$data = User::create([
         //    'name' => $data['name'],

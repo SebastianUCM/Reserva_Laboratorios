@@ -1,7 +1,23 @@
+
+    <style>
+        .bg 
+        {
+            background: url('/image/blanco.jpg');
+            height: 100%;
+            width: 100%;
+            padding-right: auto;
+            padding-left: auto;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+
+<div class="bg">
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -66,5 +82,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

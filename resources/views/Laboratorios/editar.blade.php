@@ -1,4 +1,19 @@
-editar laboratorio
+
+    <style>
+        .bg 
+        {
+            background: url('/image/blanco.jpg');
+            height: 100%;
+            width: 100%;
+            padding-right: auto;
+            padding-left: auto;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+
+
+<div class="bg">
 @extends('layouts.app')
 
 @section('content')
@@ -12,7 +27,6 @@ editar laboratorio
                     <form method="POST" action="/Laboratorios/{{$laboratorio->id}}">
                     {{ csrf_field() }}
                     @method('PUT')
-                    {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="Name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Laboratorio') }}</label>
 
@@ -29,12 +43,15 @@ editar laboratorio
 
                         <div class="form-group row">
                             <label for="Codigo" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
-                            <select name="Codigo" id="Codigo" size=1>
+                            <div class="col-md-6">
+                                <select name="Codigo" class="form-control" id="Codigo" size=1>
                                 @foreach($carreras as $carrera)
                                     <option value="{{$carrera->codigo}}" >{{$carrera->nombre}}</option> 
 
                                 @endforeach
-                            </select>              
+
+                                </select>   
+                            </div>           
 
                             
                         </div>
@@ -66,5 +83,6 @@ editar laboratorio
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

@@ -6,8 +6,10 @@ use App\Reservas;
 use App\Http\Controllers\Controller;
 use App\Laboratorios;
 use App\User;
-use DB;
+//use DB;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 
 class ReservasController extends Controller
 {
@@ -21,12 +23,9 @@ class ReservasController extends Controller
         $reservas = DB::table('reservas')
         ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')
         ->join('users','users.id','=','reservas.Usuario_id')
-        ->select('reservas.Fecha','reservas.Modulo_inicio','reservas.Modulo_fin','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
-        ->OrderBy('Laboratorio')->get();
-
-        //dd($reservas->all());
-
-        $usuarios = User::all();
+        ->select('reservas.id','reservas.Fecha','reservas.Modulo_inicio','reservas.Modulo_fin','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
+        ->OrderBy('Laboratorio')
+        ->get();
 
         return view('reservas.index',compact('reservas'));
     }
@@ -75,9 +74,11 @@ class ReservasController extends Controller
      * @param  \App\Reservas  $reservas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservas $reservas)
+    public function edit($id)
     {
-        //
+        $reserva= Reservas::findOrFail($id);
+        return view('Reservas.editar', compact('reserva'));
+
     }
 
     /**
@@ -87,9 +88,19 @@ class ReservasController extends Controller
      * @param  \App\Reservas  $reservas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservas $reservas)
+    public function update(Request $request,$id)
     {
-        //
+        $nuevoDato=Reservas::find($id);
+        $nuevoDato->Fecha = $request->Fecha;
+        $nuevoDato->Modulo_inicio = $request->Modulo_inicio;
+        $nuevoDato->Modulo_fin = $request->Modulo_fin;
+        $nuevoDato->Motivo = $request->Motivo;
+        $nuevoDato->Laboratorio_id= $request->Laboratorio_id;
+        $nuevoDato->Usuario_id = $request->Usuario_id;
+        
+        $nuevoDato->save();
+        
+        return redirect("Reservas");
     }
 
     /**
@@ -98,8 +109,24 @@ class ReservasController extends Controller
      * @param  \App\Reservas  $reservas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservas $reservas)
+    public function destroy($id)
     {
-        //
+        $destroy = Reservas::destroy($id);
+        
+        if ($destroy){
+            $id=[
+                'status'=>'1',
+                'msg'=>'success'
+            ];
+        
+        }else{
+        
+            $id=[
+                'status'=>'0',
+                'msg'=>'fail'
+            ];
+        
+        }
+        return redirect('/Reservas');
     }
 }

@@ -1,3 +1,16 @@
+    <style>
+        .bg 
+        {
+            background: url('/image/blanco.jpg');
+            height: 100%;
+            width: 100%;
+            padding-right: auto;
+            padding-left: auto;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+<div class="bg">
 @extends('layouts.app')
 
 @section('content')
@@ -73,5 +86,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
