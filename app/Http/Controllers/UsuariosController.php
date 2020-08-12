@@ -15,14 +15,6 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected function validator(array $data)
-    {
-    }
-
-
-
-
-
     public function index()
     {
         $usuarios = User::all();

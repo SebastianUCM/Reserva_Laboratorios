@@ -5,13 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white card-dark bg-primary "">{{ __('Listado de Laboratorios') }}
-                <ul class="navbar-nav ml-auto">
-                                <a href="/Laboratorios/create" class="btn btn-success">Crear un Laboratorio</a>
-                </ul>
-                                </div>
+                <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Laboratorios') }}
+                    <ul class="navbar-nav ml-auto">
+                        <a href="/Laboratorios/create" class="btn btn-success">Crear un Laboratorio</a>
+                    </ul>
+                </div>
 
-               
                     <table class="table table-light ">
                         <thead class="thead-light ">
                             <tr>

@@ -67,11 +67,11 @@ class CarreraSeeder extends Seeder
 
         DB::table('carreras')->insert([
             'codigo' => 'ENF - T',
-            'nombre' => 'ENFERMERIA - Talca',
+            'nombre' => 'Enfermería - Talca',
         ]);
         DB::table('carreras')->insert([
             'codigo' => 'ENF - C',
-            'nombre' => 'ENFERMERIA - Curico',
+            'nombre' => 'Enfermería - Curico',
         ]);
 
         DB::table('carreras')->insert([
