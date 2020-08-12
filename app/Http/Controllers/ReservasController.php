@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Reservas;
 use App\Http\Controllers\Controller;
+use App\Laboratorios;
+use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 class ReservasController extends Controller
@@ -15,7 +18,15 @@ class ReservasController extends Controller
      */
     public function index()
     {
-        $reservas = Reservas::all();
+        $reservas = DB::table('reservas')
+        ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')
+        ->join('users','users.id','=','reservas.Usuario_id')
+        ->select('reservas.Fecha','reservas.Modulo_inicio','reservas.Modulo_fin','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
+        ->OrderBy('Laboratorio')->get();
+
+        //dd($reservas->all());
+
+        $usuarios = User::all();
 
         return view('reservas.index',compact('reservas'));
     }
@@ -28,7 +39,9 @@ class ReservasController extends Controller
     public function create()
     {
         $reservas = Reservas::all();
-        return view('reservas.crear',compact('reservas'));
+        $laboratorios = Laboratorios::all();
+        $usuarios = User::all();
+        return view('reservas.crear',compact('reservas','laboratorios','usuarios'));
     }
 
     /**
@@ -37,9 +50,12 @@ class ReservasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $datosLaboratorios=request()->except('_token');
+        Reservas::insert($datosLaboratorios);
+        return redirect('/Reservas');
+        
     }
 
     /**

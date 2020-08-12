@@ -4,7 +4,7 @@ Idndex Reserva
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Reservas') }}
                     <ul class="navbar-nav ml-auto">
@@ -14,22 +14,31 @@ Idndex Reserva
                 <table class="table table-light ">
                         <thead class="thead-light ">
                             <tr>
-                                <th></th>
-                                <th>Nombre</th>
-                                <th>Correo Electronico</th>
-                                <th>Rol</th>
-                                <th>Accion</th>
-                                <th>Accion</th>
-                                <th></th>
+                                <th>N°Lista:</th>
+                                <th>Laboratorio:</th>
+                                <th>Fecha:</th>
+                                <th>Hora Inicio:</th>
+                                <th>Hora Término:</th>
+                                <th>Motivo:</th>
+                                <th>Usuario:</th>
+                                <th>Acción</th>
+                                <th>Acción</th>
+
                             </tr>
                         </thead>
-                        <tbody>
-                        
-                        //foreach
+                        @foreach($reservas as $reserva)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$reserva->Laboratorio}}</td>
+                            <td>{{$reserva->Fecha}}</td>
+                            <td>{{$reserva->Modulo_inicio}}</td>
+                            <td>{{$reserva->Modulo_fin}}</td>
+                            <td>{{$reserva->Motivo}}</td>
+                            <td>{{$reserva->Usuario}}</td>
+                        </tr>
 
-                        </tbody>
+                        @endforeach
                     </table>
-                
             </div>
         </div>
     </div>

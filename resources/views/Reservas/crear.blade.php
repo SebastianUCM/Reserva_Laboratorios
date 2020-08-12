@@ -16,7 +16,7 @@ Crear Reserva
                         <div class="form-group row">
                             <label for="Fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha" class="form-control" name="trip-start" min="2020-08-11" max="2020-12-31">
+                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-11" max="2020-12-31">
                             </div>
                         </div>
 
@@ -49,17 +49,31 @@ Crear Reserva
                         </div>
 
                         <div class="form-group row">
+
                             <label for="Laboratorio_id" class="col-md-4 col-form-label text-md-right">{{ __('Laboratorio') }}</label>
+
                             <div class="col-md-6">
-                                <input id="Laboratorio_id" type="text" class="form-control" name="Laboratorio_id" value="{{ old('name') }}" required autocomplete="Laboratorio_id" autofocus>
+                                <select class="form-control" name="Laboratorio_id" id="Laboratorio_id" size=1>
+                                    @foreach($laboratorios as $laboratorio)
+                                        <option value="{{$laboratorio->id}}" >{{$laboratorio->Nombre}}</option> 
+                                    @endforeach
+                                </select>
                             </div>
+
                         </div>
 
                         <div class="form-group row">
+
                             <label for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
+
                             <div class="col-md-6">
-                                <input id="Usuario_id" type="text" class="form-control" name="Usuario_id" value="{{ old('name') }}" required autocomplete="Usuario_id" autofocus>
+                                <select class="form-control" name="Usuario_id" id="Usuario_id" size=1>
+                                    @foreach($usuarios as $usuario)
+                                        <option value="{{$usuario->id}}" >{{$usuario->name}}</option> 
+                                    @endforeach
+                                </select>
                             </div>
+
                         </div>
                
                         <div class="form-group row mb-0">
