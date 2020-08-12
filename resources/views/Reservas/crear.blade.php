@@ -1,9 +1,15 @@
-Crear Reserva
-
+    <style>
+        .bg 
+        {
+            background: url('/image/blanco.jpg');
+            height: 100%;
+        }
+    </style>
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+<div class="bg">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

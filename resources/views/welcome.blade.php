@@ -61,9 +61,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .bg 
+            {
+                background: url('/image/Fondo_Pantalla_UCM_celeste.jpg');
+                height: 100%;
+            }
         </style>
     </head>
-    <body>
+    <body class='bg'>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

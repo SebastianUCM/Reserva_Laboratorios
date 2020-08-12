@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Validator;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -13,18 +14,6 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-
-
 
 
     public function index()
@@ -39,9 +28,18 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(array $data)
     {
+        //$data = User::create([
+        //    'name' => $data['name'],
+        //    'email' => $data['email'],
+        //    'password' => Hash::make($data['password']),
+        //]);
+        //return view('laboratorios.crear',compact('laboratorios','carreras'));
+        $usuarios = User::all();
+        //return view('usuarios.crear');
         return view('usuarios.crear');
+       // return redirect('/Usuarios');
     }
 
     /**
