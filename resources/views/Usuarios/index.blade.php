@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Usuarios') }}
                     <ul class="navbar-nav ml-auto">
-                        <a href="/register" class="btn btn-success">Crear un Usuario</a>
+                        <a href="/Usuarios/create" class="btn btn-success">Crear un Usuario</a>
                     </ul>
                 </div>
                 <table class="table table-light ">
