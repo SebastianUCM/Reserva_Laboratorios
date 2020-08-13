@@ -28,7 +28,7 @@
                     {{ csrf_field() }}
                         <div class="form-group row">
                         
-                            <label for="Name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
+                            <label for="Name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $usuario->name }}" required autocomplete="name" autofocus>
@@ -38,7 +38,7 @@
 
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electronico') }}</label>
 
                             <div class="col-md-6">
 
@@ -52,6 +52,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="rol" value="{{ $usuario->rol }}">
+                                    <option value="Secretario/a">Secretario/a</option> 
+                                    <option value="Encargado/a" >Encargado/a</option>
+                                    <option value="Usuario">Usuario</option>
+                                </select>
+                            </div>
+                        </div>          
+
+                            
+                
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
