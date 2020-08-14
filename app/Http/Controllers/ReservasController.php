@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Laboratorios;
 use App\User;
 //use DB;
+use Illuminate\Http\Response;
+//use App\Http\Controllers\Response;
+use App\Http\Resources\ReservaResource as ReservaResource;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -51,10 +54,28 @@ class ReservasController extends Controller
      */
     public function store(Request $request){
 
-        $datosLaboratorios=request()->except('_token');
-        Reservas::insert($datosLaboratorios);
-        return redirect('/Reservas');
-        
+        //$datosLaboratorios=request()->except('_token');
+        //Reservas::insert($datosLaboratorios);
+        //return redirect('/Reservas');
+
+        $reservado = $this->horarioReservado($request);
+        if($reservado){
+            //return response(['status'=>0,'message'=>'Reserva ocupada']);//->setStatusCode(Response::HTTP_ACCEPTED);
+            return redirect('/Reservas');
+        }else{
+            $reserva = new Reservas;
+            $reserva->Fecha = $request->Fecha;
+            $reserva->Modulo_inicio = $request->Modulo_inicio;
+            $reserva->Modulo_fin = $request->Modulo_fin;
+            $reserva->Motivo = $request->Motivo;
+            $reserva->Laboratorio_id = $request->Laboratorio_id;
+            $reserva->Usuario_id = $request->Usuario_id;
+            $reserva->save();
+            if($reserva){
+                //return (new ReservaResource($reserva))->response->response()->setStatusCode(Response::HTTP_CREATED); 
+                return redirect('/Reservas');
+            }
+        }
     }
 
     /**
@@ -128,5 +149,38 @@ class ReservasController extends Controller
         
         }
         return redirect('/Reservas');
+    }
+
+    private function horarioReservado($request){
+        $reservado = false;
+        $reserva_inicial = Reservas::where('Fecha',$request->fecha)
+        ->where('Laboratorio_id',$request->Laboratorio_id)
+        ->where('Modulo_inicio','<=',$request->Modulo_inicio)
+        ->where('Modulo_fin','>=',$request->Modulo_fin)
+        ->count();
+        if($reserva_inicial > 0){
+            $reservado = true;
+        }
+
+        $reserva_final = Reservas::where('Fecha',$request->Fecha)
+        ->where('Laboratorio_id',$request->Laboratorio_id)
+        ->where('Modulo_inicio','<=',$request->Modulo_fin)
+        ->where('Modulo_fin','>=',$request->Modulo_fin)
+        ->count();
+        if($reserva_final > 0){
+            $reservado = true;
+        }
+
+        $reserva_inicial_final = Reservas::where('Fecha',$request->Fecha)
+        ->where('Laboratorio_id',$request->Laboratorio_id)
+        ->where('Modulo_inicio','>=',$request->Modulo_inicio)
+        ->where('Modulo_fin','<=',$request->Modulo_fin)
+        ->count();
+        if($reserva_inicial_final > 0){
+            $reservado = true;
+        }
+
+        return $reservado;
+
     }
 }
