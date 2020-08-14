@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
     /*
     |--------------------------------------------------------------------------
     | Register Controller

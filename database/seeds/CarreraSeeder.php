@@ -120,12 +120,12 @@ class CarreraSeeder extends Seeder
 
         DB::table('carreras')->insert([
             'codigo' => 'IND',
-            'nombre' => 'Ingeniería Civil Indsutrial',
+            'nombre' => 'Ingeniería Civil Industrial',
         ]);
 
         DB::table('carreras')->insert([
             'codigo' => 'INF',
-            'nombre' => 'Ingenieria Civil Informatica',
+            'nombre' => 'Ingenieria Civil Informática',
         ]);
 
         DB::table('carreras')->insert([
