@@ -23,7 +23,9 @@
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Laboratorios') }}
                     <ul class="navbar-nav ml-auto">
+                    @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                         <a href="/Laboratorios/create" class="btn btn-success">Crear un Laboratorio</a>
+                    @endif
                     </ul>
                 </div>
 
@@ -34,9 +36,11 @@
                                 <th>Nombre</th>
                                 <th>Carrera</th>
                                 <th>Capacidad</th>
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                                 <th>Accion</th>
                                 <th>Accion</th>
                                 <th></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -46,18 +50,21 @@
                                 <td>{{$laboratorio->Nombre}}</td>
                                 <td>{{$laboratorio->Codigo}}</td>
                                 <td>{{$laboratorio->Capacidad}}</td>
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                                 <td>
-                                <form method="GET" action="/Laboratorios/{{$laboratorio->id}}/edit">
-                                <button type="submit" class="btn btn-warning">Editar</button>
-                                </form>
+                                    <form method="GET" action="/Laboratorios/{{$laboratorio->id}}/edit">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    </form>
                                 </td>
                                 <td>
-                                <form method="POST" action="/Laboratorios/{{$laboratorio->id}}">
-                                {{csrf_field()}}
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
-                                </form>
+                                    <form method="POST" action="/Laboratorios/{{$laboratorio->id}}">
+                                    {{csrf_field()}}
+                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
+                                
+                                    </form>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

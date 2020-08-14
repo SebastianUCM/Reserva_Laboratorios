@@ -27,7 +27,7 @@
                         <div class="form-group row">
                             <label for="Fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-11" max="2020-12-31">
+                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-14" max="2020-12-31">
                             </div>
                         </div>
 
@@ -75,16 +75,12 @@
 
                         <div class="form-group row">
 
-                            <label for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
+                            <label type="hidden" for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" name="Usuario_id" id="Usuario_id" size=1>
-                                    @foreach($usuarios as $usuario)
-                                        <option value="{{$usuario->id}}" >{{$usuario->name}}</option> 
-                                    @endforeach
-                                </select>
+                                <input type="hidden" class="form-control" name="Usuario_id" value="@auth{{ auth()->user()->id}}@endauth" readonly>
+                                <input type="text" class="form-control"  value="@auth{{ auth()->user()->name}}@endauth" readonly>
                             </div>
-
                         </div>
                
                         <div class="form-group row mb-0">
