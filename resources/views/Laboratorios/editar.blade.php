@@ -60,7 +60,7 @@
                             <label for="Capacidad" class="col-md-4 col-form-label text-md-right">{{ __('Capacidad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Capacidad" type="interger" class="form-control @error('password') is-invalid @enderror" name="Capacidad" value="{{ $laboratorio->Capacidad }}" required autocomplete="Capacidad">
+                                <input id="Capacidad"  type="number" min="1" pattern="^[0-9]+" class="form-control @error('password') is-invalid @enderror" name="Capacidad" value="{{ $laboratorio->Capacidad }}" required autocomplete="Capacidad">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
