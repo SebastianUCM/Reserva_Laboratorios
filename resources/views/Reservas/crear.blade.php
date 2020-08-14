@@ -27,7 +27,7 @@
                         <div class="form-group row">
                             <label for="Fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-14" max="2020-12-31">
+                                <input type="date" id="Fecha" class="form-control" name="Fecha" value="2020-08-14" min="2020-08-14" max="2020-12-31">
                             </div>
                         </div>
 
