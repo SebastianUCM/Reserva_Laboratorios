@@ -22,10 +22,12 @@
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Reservas') }}
                     <ul class="navbar-nav ml-auto">
-                        <a href="/Reservas/create" class="btn btn-success">Crear una Reserva</a>
+                        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
+                            <a href="/Reservas/create" class="btn btn-success">Crear una Reserva</a>
+                        @endif
                     </ul>
                 </div>
-                <table class="table table-light ">
+                <table class="table table-light">
                         <thead class="thead-light ">
                             <tr>
                                 <th>N°Lista</th>
@@ -35,8 +37,10 @@
                                 <th>Hora Término</th>
                                 <th>Motivo</th>
                                 <th>Usuario</th>
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                                 <th>Acción</th>
                                 <th>Acción</th>
+                                @endif
 
                             </tr>
                         </thead>
@@ -49,6 +53,7 @@
                             <td>{{$reserva->Modulo_fin}}</td>
                             <td>{{$reserva->Motivo}}</td>
                             <td>{{$reserva->Usuario}}</td>
+                            @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                             <td>
                                 <form method="GET" action="/Reservas/{{$reserva->id}}/edit">
                                     <button type="submit" class="btn btn-warning">Editar</button>
@@ -61,6 +66,7 @@
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </table>

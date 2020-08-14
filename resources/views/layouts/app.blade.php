@@ -69,14 +69,17 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Reservas">{{ __('Reservas') }}</a>
                                     </li>
+                                   @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                                     <!--  Usuarios -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Usuarios">{{ __('Usuarios') }}</a>
                                     </li>
+                                     @endif
                                     <!-- Laboratorios -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Laboratorios">{{ __('Laboratorios') }}</a>
                                     </li>
+                                    
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>

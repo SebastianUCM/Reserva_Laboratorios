@@ -31,7 +31,7 @@
                         <div class="form-group row">
                             <label for="Fecha" class="col-md-4 col-form-label text-md-right">{{ __('Fecha') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-11" max="2020-12-31" value="{{ $reserva->Fecha }}">
+                                <input type="date" id="Fecha" class="form-control" name="Fecha" min="2020-08-14" max="2020-12-31" value="{{ $reserva->Fecha }}">
                             </div>
                         </div>
 
@@ -64,23 +64,18 @@
                         </div>
 
                         <div class="form-group row">
-
                             <label for="Laboratorio_id" class="col-md-4 col-form-label text-md-right">{{ __('Laboratorio') }}</label>
-
                             <div class="col-md-6">
                                 <input id="Laboratorio_id" type="text" class="form-control" name="Laboratorio_id" value="{{ $reserva->Laboratorio_id }}"  required autocomplete="Laboratorio_id" autofocus readonly>
                             </div>
-
                         </div>
 
-                        <div class="form-group row">
-
-                            <label for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
-
+                         <div class="form-group row">
+                            <label type="hidden" for="Usuario_id" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
                             <div class="col-md-6">
-                                <input id="Usuario_id" type="text" class="form-control" name="Usuario_id" value="{{ $reserva->Usuario_id }}" required autocomplete="Usuario_id" autofocus readonly>
+                                <input type="hidden" class="form-control" name="Usuario_id" value="@auth{{ auth()->user()->id}}@endauth" readonly>
+                                <input type="text" class="form-control"  value="@auth{{ auth()->user()->name}}@endauth" readonly>
                             </div>
-
                         </div>
                
                         <div class="form-group row mb-0">
