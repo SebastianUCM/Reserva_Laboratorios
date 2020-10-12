@@ -66,9 +66,13 @@
                             @else
                                 
                                 <li class="nav-item dropdown">
-                                    <!-- Reservas -->
+                                    <!-- Calendario -->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Reservas">{{ __('Reservas') }}</a>
+                                        <a class="nav-link" href="/Calendario/reserva">{{ __('Calendario') }}</a>
+                                    </li>
+                                    <!-- Lista de reservas -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Reservas">{{ __('Lista de Reservas') }}</a>
                                     </li>
                                    @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
                                     <!--  Usuarios -->

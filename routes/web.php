@@ -33,3 +33,9 @@ Route::resource('Reservas', 'ReservasController');
 
 Route::resource('User', 'UsuariosController');
 
+Route::get('Calendario/reserva/{mes}','CalendarioController@index_month');
+Route::get('Calendario/reserva','CalendarioController@index');
+
+Route::get('Reserva/index','ReservasController@index_C');
+Route::get('Reserva/detalle/{id}','ReservasController@details');
+
