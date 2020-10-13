@@ -337,4 +337,13 @@ class ReservasController extends Controller
          }
          return $mes;
      }
+     public function details($id){
+
+      $reserva = Reservas::find($id);
+
+      return view("Calendario/detalle",[
+        "reserva" => $reserva
+      ]);
+
+    }
 }
