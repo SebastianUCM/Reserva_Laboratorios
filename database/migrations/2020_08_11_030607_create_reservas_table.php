@@ -16,8 +16,7 @@ class CreateReservasTable extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->date('Fecha');
-            $table->time('Modulo_inicio');
-            $table->time('Modulo_fin');
+            $table->json('Modulos');
             $table->string('Motivo');
             $table->unsignedBigInteger('Laboratorio_id');
             $table->foreign('Laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');

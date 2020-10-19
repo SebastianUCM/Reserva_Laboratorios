@@ -54,6 +54,10 @@
           </div>
           <div class="fomr-group">
             <h4>Motivo</h4>
+            {{ json_encode($reserva->Modulos) }}';
+          </div>
+          <div class="fomr-group">
+            <h4>Motivo</h4>
             {{ $reserva->Motivo }}
           </div>
           <br>

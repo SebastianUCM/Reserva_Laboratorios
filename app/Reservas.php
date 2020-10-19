@@ -8,10 +8,14 @@ class Reservas extends Model
 {
     protected $table= 'reservas';
 
-    //
-    protected $fillable = [
-        'id', 'Fecha', 'Modulo_inicio','Modulo_fin','Motivo','Laboratorio_id','Usuario_id'
+    protected $casts =[
+        'Modulos' => 'array'
     ];
 
-    public $timestamps = false;
+
+    //
+    //protected $fillable = [
+    //    'id', 'Fecha', 'Modulos','Motivo','Laboratorio_id','Usuario_id'
+    //];
+
 }

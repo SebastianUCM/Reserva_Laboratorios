@@ -33,20 +33,12 @@
 
                         <div class="form-group row">
 
-                            <label for="Modulo_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Modulo de Inicio') }}</label>
-
+                            <label for="Modulos" class="col-md-4 col-form-label text-md-right">{{ __('Modulos') }}</label>
                             <div class="col-md-6">
-                                <input id="Modulo_inicio" type="time" class="form-control" name="Modulo_inicio" required autocomplete="Modulo_inicio" autofocus>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row">
-
-                            <label for="Modulo_fin" class="col-md-4 col-form-label text-md-right">{{ __('Modulo de Termino') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Modulo_fin" type="time" class="form-control" name="Modulo_fin" required autocomplete="Modulo_fin" autofocus>
+                                <input type="checkbox" name="Modulos[]" value="8:30">8:30<br />
+                                <input type="checkbox" name="Modulos[]" value="9:30">9:30<br />
+                                <input type="checkbox" name="Modulos[]" value="9:35">10:30<br />
+                                <input type="checkbox" name="Modulos[]" value="10:50">10:50<br />
                             </div>
 
                         </div>

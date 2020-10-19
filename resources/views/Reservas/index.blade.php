@@ -33,8 +33,7 @@
                                 <th>N°Lista</th>
                                 <th>Laboratorio</th>
                                 <th>Fecha</th>
-                                <th>Hora Inicio</th>
-                                <th>Hora Término</th>
+                                <th>Modulos</th>
                                 <th>Motivo</th>
                                 <th>Usuario</th>
                                 @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
@@ -49,8 +48,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$reserva->Laboratorio}}</td>
                             <td>{{$reserva->Fecha}}</td>
-                            <td>{{$reserva->Modulo_inicio}}</td>
-                            <td>{{$reserva->Modulo_fin}}</td>
+                            <td>{{$reserva->Modulos}}</td>
                             <td>{{$reserva->Motivo}}</td>
                             <td>{{$reserva->Usuario}}</td>
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')

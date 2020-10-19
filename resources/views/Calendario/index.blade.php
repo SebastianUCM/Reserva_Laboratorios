@@ -34,16 +34,16 @@
       font-weight: bold;
     }
     .header-calendar{
-      background: #EE192D;color:white;
+      background: orange;color:white;
     }
     .box-day{
       border:1px solid #E3E9E5;
       height:150px;
     }
     .box-dayoff{
-      border:1px solid #E3E9E5;
+      border:1px solid darkslategrey;
       height:150px;
-      background-color: #ccd1ce;
+      background-color: red;
     }
     </style>
 

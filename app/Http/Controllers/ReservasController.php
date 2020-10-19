@@ -32,7 +32,7 @@ class ReservasController extends Controller
         $reservas = DB::table('reservas')
         ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')
         ->join('users','users.id','=','reservas.Usuario_id')
-        ->select('reservas.id','reservas.Fecha','reservas.Modulo_inicio','reservas.Modulo_fin','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
+        ->select('reservas.id','reservas.Fecha','reservas.Modulos','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
         ->OrderBy('Laboratorio')
         ->get();
 
@@ -64,24 +64,16 @@ class ReservasController extends Controller
         //Reservas::insert($datosLaboratorios);
         //return redirect('/Reservas');
 
-        $reservado = $this->horarioReservado($request);
-        if($reservado){
-            //return response(['status'=>0,'message'=>'Reserva ocupada']);//->setStatusCode(Response::HTTP_ACCEPTED);
-            return redirect('/Reservas');
-        }else{
-            $reserva = new Reservas;
-            $reserva->Fecha = $request->Fecha;
-            $reserva->Modulo_inicio = $request->Modulo_inicio;
-            $reserva->Modulo_fin = $request->Modulo_fin;
-            $reserva->Motivo = $request->Motivo;
-            $reserva->Laboratorio_id = $request->Laboratorio_id;
-            $reserva->Usuario_id = $request->Usuario_id;
-            $reserva->save();
-            if($reserva){
-                //return (new ReservaResource($reserva))->response->response()->setStatusCode(Response::HTTP_CREATED); 
-                return redirect('/Reservas');
-            }
-        }
+          $reserva = new Reservas;
+          $reserva->Fecha = $request->Fecha;
+          $reserva->Modulos = $request->Modulos;
+          $reserva->Motivo = $request->Motivo;
+          $reserva->Laboratorio_id = $request->Laboratorio_id;
+          $reserva->Usuario_id = $request->Usuario_id;
+          $reserva->save();
+          return redirect('/Reservas');
+    
+
     }
 
     /**
