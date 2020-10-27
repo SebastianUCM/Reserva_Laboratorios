@@ -74,7 +74,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Reservas">{{ __('Lista de Reservas') }}</a>
                                     </li>
-                                   @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a')
+                                   @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a'or Auth::user()->rol == 'Administrador')
                                     <!--  Usuarios -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Usuarios">{{ __('Usuarios') }}</a>

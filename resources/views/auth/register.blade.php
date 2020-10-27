@@ -80,7 +80,9 @@
                                 <select class="form-control" name="rol">
                                     <option value="Secretario/a">Secretario/a</option> 
                                     <option value="Encargado/a" >Encargado/a</option>
-                                    <option value="Usuario">Usuario</option>
+                                    <option value="Alumno">Alumno</option>
+                                    <option value="Profesor" >Profesor</option>
+                                    <option value="Administrador">Administrador</option>
                                 </select>
                             </div>
                         </div>

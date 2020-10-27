@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Usuarios') }}
-                    @if(Auth::user()->rol == 'Secretario/a')
+                    @if(Auth::user()->rol == 'Secretario/a'or Auth::user()->rol == 'Administrador')
                     <ul class="navbar-nav ml-auto">
                         <a href="/register" class="btn btn-success">Crear un Usuario</a>
                     </ul>
@@ -32,7 +32,7 @@
                                 <th>Nombre</th>
                                 <th>Correo Electronico</th>
                                 <th>Rol</th>
-                                @if(Auth::user()->rol == 'Secretario/a')
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador')
                                 <th>Accion</th>
                                 <th>Accion</th>
                                 <th></th>
@@ -47,7 +47,7 @@
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
                                 <td>{{$usuario->rol}}</td>
-                                @if(Auth::user()->rol == 'Secretario/a')
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador')
                                 <td>
                                 <form method="GET" action="/Usuarios/{{$usuario->id}}/edit">
                                 <button type="submit" class="btn btn-warning">Editar</button>
