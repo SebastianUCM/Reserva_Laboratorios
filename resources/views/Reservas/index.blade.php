@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Reservas') }}
                     <ul class="navbar-nav ml-auto">
-                        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador')
+                        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno')
                             <a href="/Reservas/create" class="btn btn-success">Crear una Reserva</a>
                         @endif
                     </ul>
@@ -36,7 +36,7 @@
                                 <th>Modulos</th>
                                 <th>Motivo</th>
                                 <th>Usuario</th>
-                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador')
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno')
                                 <th>Acción</th>
                                 <th>Acción</th>
                                 @endif
@@ -51,7 +51,7 @@
                             <td>{{$reserva->Modulos}}</td>
                             <td>{{$reserva->Motivo}}</td>
                             <td>{{$reserva->Usuario}}</td>
-                            @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador')
+                            @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno')
                             <td>
                                 <form method="GET" action="/Reservas/{{$reserva->id}}/edit">
                                     <button type="submit" class="btn btn-warning">Editar</button>
