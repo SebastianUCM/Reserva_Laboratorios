@@ -39,3 +39,7 @@ Route::get('Calendario/reserva','CalendarioController@index');
 Route::get('Reserva/index','ReservasController@index_C');
 Route::get('Reserva/detalle/{id}','ReservasController@details');
 
+
+
+Route::get('/agenda', 'AgendaController@index');
+
