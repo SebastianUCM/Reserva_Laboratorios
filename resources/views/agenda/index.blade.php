@@ -22,7 +22,7 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 locale: 'es',
-                initialView: 'dayGridMonth'
+                events: {!! json_encode($datos_Eventos) !!}
             });
             calendar.render();
         });

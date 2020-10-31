@@ -13,9 +13,8 @@ class Reservas extends Model
     ];
 
 
-    //
-    //protected $fillable = [
-    //    'id', 'Fecha', 'Modulos','Motivo','Laboratorio_id','Usuario_id'
-    //];
+    protected $fillable = [
+        'id', 'Fecha_inicio','Fecha_fin' ,'Modulos','Motivo','Laboratorio_id','Usuario_id'
+    ];
 
 }
