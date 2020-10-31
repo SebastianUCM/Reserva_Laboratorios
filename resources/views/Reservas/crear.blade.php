@@ -29,14 +29,14 @@
                         <div class="form-group row">
                             <label for="Fecha_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Inicio') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha_inicio" class="form-control" name="Fecha_inicio" value="2020-08-14" min="2020-08-14" max="2020-12-31">
+                                <input type="date" id="Fecha_inicio" class="form-control" name="Fecha_inicio" value="<?php echo date("d-m-Y\TH-i");?>">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Fecha_fin" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Fin') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" value="2020-08-14" min="2020-08-14" max="2020-12-31">
+                                <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" value="<?php echo date("d-m-Y\TH-i");?>">
                             </div>
                         </div>
 
