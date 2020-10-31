@@ -15,7 +15,8 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->date('Fecha');
+            $table->date('Fecha_inicio');
+            $table->date('Fecha_fin');
             $table->json('Modulos');
             $table->string('Motivo');
             $table->unsignedBigInteger('Laboratorio_id');

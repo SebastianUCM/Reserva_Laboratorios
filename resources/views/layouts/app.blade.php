@@ -68,7 +68,7 @@
                                 <li class="nav-item dropdown">
                                     <!-- Calendario -->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Calendario/reserva">{{ __('Calendario') }}</a>
+                                        <a class="nav-link" href="/agenda">{{ __('Calendario') }}</a>
                                     </li>
                                     <!-- Lista de reservas -->
                                     <li class="nav-item">

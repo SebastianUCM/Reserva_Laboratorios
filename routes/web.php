@@ -43,3 +43,4 @@ Route::get('Reserva/detalle/{id}','ReservasController@details');
 
 Route::get('/agenda', 'AgendaController@index');
 
+
