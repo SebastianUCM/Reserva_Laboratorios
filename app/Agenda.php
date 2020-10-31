@@ -12,7 +12,8 @@ class Agenda extends Model
         "fecha",
         "hora_inicio",
         "hora_final",
-        "estado"
+        "estado",
+        "descripcion"
     ];
 
 }
