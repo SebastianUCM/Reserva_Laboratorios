@@ -84,174 +84,350 @@
                                 </div>
 
                         </div> !-->
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Lunes
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =1> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =2> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =3> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =4> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =5> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =6> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =7> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =8> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =9> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =10> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =11> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =12> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Martes
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =13> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =14> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =15> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =16> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =17> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =18> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =19> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =20> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =21> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =22> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =23> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =24> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Miercoles
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =25> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =26> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =27> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =28> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =29> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =30> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =31> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =32> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =33> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =34> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =35> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =36> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Jueves
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =37> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =38> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =39> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =40> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =41> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =42> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =43> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =44> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =45> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =46> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =47> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =48> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Viernes
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =49> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =50> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =51> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =52> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =53> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =54> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =55> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =56> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =57> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =58> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =59> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =60> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="panel panel-success autocollapse">
-                                <div class="button button1 clickable">
-                                    <h4 >
-                                        Sábado
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset>
-                                        <label>Modulos: </label>
-                                        <br>
-                                        <input type="checkbox" name="Modulos[]" value =61> 1- 08:30 - 09:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =62> 2- 09:35 - 10:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =63> 3- 10:50 - 11:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =64> 4- 11:55 - 12:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =65> 5- 13:10 - 14:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =66> 6- 14:30 - 15:30<br />
-                                        <input type="checkbox" name="Modulos[]" value =67> 7- 15:35 - 16:35<br />
-                                        <input type="checkbox" name="Modulos[]" value =68> 8- 16:50 - 17:50<br />
-                                        <input type="checkbox" name="Modulos[]" value =69> 9- 17:55 - 18:55<br />
-                                        <input type="checkbox" name="Modulos[]" value =70> 10- 19:10 - 20:10<br />
-                                        <input type="checkbox" name="Modulos[]" value =71> 11- 20:15 - 21:15<br />
-                                        <input type="checkbox" name="Modulos[]" value =72> 12- 21:30 - 22:30<br />
-                                    </fieldset>  
-                                </div>
-                            </div>
-                        </div>
-                        
-               
+                        <!-- Tabla Horario -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th scope="col">Módulo</th>
+                                <th scope="col">Lunes</th>
+                                <th scope="col">Martes</th>
+                                <th scope="col">Miércoles</th>
+                                <th scope="col">Jueves</th>
+                                <th scope="col">Viernes</th>
+                                <th scope="col">Sábado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1.- 8:30 - 9:30</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =1><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =13><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =25><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =37><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =49><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =61><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2.- 09:35 - 10:35</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =2><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =14><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =26><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =38><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =50><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =62><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3.- 10:50 - 11:50</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =3><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =15><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =27><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =39><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =51><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =63><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4.- 11:55 - 12:55</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =4><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =16><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =28><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =40><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =52><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =64><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5.- 13:10 - 14:10</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =5><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =17><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =29><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =41><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =53><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =65><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6.- 14:30 - 15:30</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =6><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =18><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =30><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =42><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =54><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =66><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7.- 15:35 - 16:35</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =7><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =19><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =31><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =43><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =55><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =67><br />
+                                    </td>
+                                <tr>
+                                    <th scope="row">8.- 16:50 - 17:50</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =8><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =20><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =32><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =44><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =56><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =68><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9.- 17:55 - 18:55</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =9><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =21><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =33><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =45><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =57><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =69><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10.- 19:10 - 20:10</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =10><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =22><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =34><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =46><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =58><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =70><br />
+                                    </td>
+                                </tr>      
+                                <tr>
+                                    <th scope="row">11.- 20:15 - 21:15</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =11><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =23><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =35><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =47><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =59><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =71><br />
+                                    </td>
+                                </tr>    
+                                <tr>
+                                    <th scope="row">12.- 21:30 - 22:30</th>
+                                    <!-- Lunes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =12><br />
+                                    </td>
+                                    <!-- Martes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =24><br />
+                                    </td>
+                                    <!-- Miercoles -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =36><br />
+                                    </td>
+                                    <!-- Jueves -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =48><br />
+                                    </td>
+                                    <!-- Viernes -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =60><br />
+                                    </td>
+                                    <!-- Sabado -->
+                                    <td>
+                                        <input type="checkbox" name="Modulos[]" value =72><br />
+                                    </td>
+                                </tr>   
+                            </tbody>
+                        </table>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Crear una Reserva') }}
+                                    {{ __('Crear Reserva') }}
                                 </button>
                             </div>
                         </div>
