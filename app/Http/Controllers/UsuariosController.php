@@ -98,6 +98,7 @@ class UsuariosController extends Controller
         $nuevoDato=User::find($id);
         $nuevoDato->name = $request->name;
         $nuevoDato->email = $request->email;
+        $nuevoDato->rol= $request->rol;
         $nuevoDato->save();
         
         return redirect("Usuarios");

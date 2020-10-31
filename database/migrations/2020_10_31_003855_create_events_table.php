@@ -20,7 +20,8 @@ class CreateEventsTable extends Migration
             $table->string('modulo');
             $table->string('usuario_id');
             $table->string('laboratorio_id');
-            $table->string('reserva_id');
+            $table->unsignedBigInteger('reserva_id');
+            $table->foreign('reserva_id')->references('id')->on('reservas')->onDelete('cascade');
 
             $table->timestamps();
         });
