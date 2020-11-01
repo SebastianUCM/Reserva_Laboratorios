@@ -68,6 +68,16 @@ class ReservasController extends Controller
         //Reservas::insert($datosLaboratorios);
         //return redirect('/Reservas');
 
+        $validate = $request->validate([
+          'Fecha_inicio' => 'required',
+          'Fecha_fin' => 'required',
+          'Motivo'=>'required',
+          'Laboratorio_id'=>'required',
+          'Modulos'=>'required',
+          'Laboratorio_id'=>'required',
+          'atomica'=>'required',
+        ]);
+
           $reserva = new Reservas;
           $reserva->Fecha_inicio = $request->Fecha_inicio;
           $reserva->Fecha_fin = $request->Fecha_fin;
@@ -76,11 +86,26 @@ class ReservasController extends Controller
           $reserva->Laboratorio_id = $request->Laboratorio_id;
           $reserva->Usuario_id = $request->Usuario_id;
           $reserva->save();
+          
+
+
+          if($validate['atomica']=='si'){
+            $envio =$this->verificar_disp($reserva->Fecha_inicio,$reserva->Fecha_fin,$reserva->Modulos,$validate);
+            if($envio){
+              $error="Ya existe una reserva en donde está solicitando reservar";
+              return back()->with(compact('envio'));
+            };         
+          }
+          
+
+
+
+          if($request)                  //Si llega una peticón .... NO ELIMINAR
 
           $diaPivote = $request->Fecha_inicio;
           //dd($request->all(),$diaPivote);
 
-          while($diaPivote<$request->Fecha_fin){
+          while($diaPivote<=$request->Fecha_fin){
 
             foreach($request->Modulos as $ModuloPivote){
               if((carbon::parse($diaPivote)->dayOfWeek )=='1'){     //Esto equivale al Día Lunes//
@@ -157,36 +182,69 @@ class ReservasController extends Controller
                   $evento->reserva_id = $reserva->id;
                   $evento->save();
                 }
-              }
-
-
-
-
-
-              
+              }             
             }
-
-
-            
-
-
-            
-
-
-
-
-
-
-
             $diaPivote=Carbon::parse($diaPivote)->addDays(1);
           }
-
-
-
-          return redirect('/Reservas');
-    
+          return redirect('/Reservas');  
 
     }
+    public function verificar_disp($Fecha_inicio,$Fecha_fin,$Modulos,$validate){
+      $arreglo=[];
+      $diaPivote=$Fecha_inicio;
+      while($diaPivote <=$Fecha_fin){
+
+
+        foreach($Modulos as $ModuloPivote){
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='1'){
+            if($ModuloPivote>=1 && $ModuloPivote<=12){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          if((carbon::parse($diaPivote)->dayOfWeek )=='2'){
+            if($ModuloPivote>=13 && $ModuloPivote<=24){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          if((carbon::parse($diaPivote)->dayOfWeek )=='3'){
+            if($ModuloPivote>=25 && $ModuloPivote<=36){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          if((carbon::parse($diaPivote)->dayOfWeek )=='4'){
+            if($ModuloPivote>=37 && $ModuloPivote<=48){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          if((carbon::parse($diaPivote)->dayOfWeek )=='5'){
+            if($ModuloPivote>=49 && $ModuloPivote<=60){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          if((carbon::parse($diaPivote)->dayOfWeek )=='6'){
+            if($ModuloPivote>=61 && $ModuloPivote<=72){
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              array_push($arreglo,$evento);
+            }
+          }
+          $diaPivote=Carbon::parse($diaPivote)->addDays(1);
+        }
+        return ($arreglo);
+      }
+
+
+
+
+    }
+
+
+
 
     /**
      * Display the specified resource.
@@ -291,163 +349,6 @@ class ReservasController extends Controller
         }
 
         return $reservado;
-
-    }
-
-    public function index_C(){
-
-        $month = date("Y-m");
-        //
-        $data = $this->calendar_month($month);
-        $mes = $data['month'];
-        // obtener mes en espanol
-        $mespanish = $this->spanish_month($mes);
-        $mes = $data['month'];
- 
-        return view("Calendario/index",[
-          'data' => $data,
-          'mes' => $mes,
-          'mespanish' => $mespanish
-        ]);
- 
-    }
- 
-    public function index_month($month){
- 
-       $data = $this->calendar_month($month);
-       $mes = $data['month'];
-       // obtener mes en espanol
-       $mespanish = $this->spanish_month($mes);
-       $mes = $data['month'];
- 
-       return view("Calendario/index",[
-         'data' => $data,
-         'mes' => $mes,
-         'mespanish' => $mespanish
-       ]);
- 
-     }
- 
-     public static function calendar_month($month){
-       //$mes = date("Y-m");
-       $mes = $month;
-       //sacar el ultimo de dia del mes
-       $daylast =  date("Y-m-d", strtotime("last day of ".$mes));
-       //sacar el dia de dia del mes
-       $fecha      =  date("Y-m-d", strtotime("first day of ".$mes));
-       $daysmonth  =  date("d", strtotime($fecha));
-       $montmonth  =  date("m", strtotime($fecha));
-       $yearmonth  =  date("Y", strtotime($fecha));
-       // sacar el lunes de la primera semana
-       $nuevaFecha = mktime(0,0,0,$montmonth,$daysmonth,$yearmonth);
-       $diaDeLaSemana = date("w", $nuevaFecha);
-       $nuevaFecha = $nuevaFecha - ($diaDeLaSemana*24*3600); //Restar los segundos totales de los dias transcurridos de la semana
-       $dateini = date ("Y-m-d",$nuevaFecha);
-       //$dateini = date("Y-m-d",strtotime($dateini."+ 1 day"));
-       // numero de primer semana del mes
-       $semana1 = date("W",strtotime($fecha));
-       // numero de ultima semana del mes
-       $semana2 = date("W",strtotime($daylast));
-       // semana todal del mes
-       // en caso si es diciembre
-       if (date("m", strtotime($mes))==12) {
-           $semana = 5;
-       }
-       else {
-         $semana = ($semana2-$semana1)+1;
-       }
-       // semana todal del mes
-       $datafecha = $dateini;
-       $calendario = array();
-       $iweek = 0;
-       while ($iweek < $semana):
-           $iweek++;
-           //echo "Semana $iweek <br>";
-           //
-           $weekdata = [];
-           for ($iday=0; $iday < 7 ; $iday++){
-             // code...
-             $datafecha = date("Y-m-d",strtotime($datafecha."+ 1 day"));
-             $datanew['mes'] = date("M", strtotime($datafecha));
-             $datanew['dia'] = date("d", strtotime($datafecha));
-             $datanew['fecha'] = $datafecha;
-             //AGREGAR CONSULTAS EVENTO
-             $datanew['reservas'] = Reservas::where("fecha",$datafecha)->get();
- 
-             array_push($weekdata,$datanew);
-           }
-           $dataweek['semana'] = $iweek;
-           $dataweek['datos'] = $weekdata;
-           //$datafecha['horario'] = $datahorario;
-           array_push($calendario,$dataweek);
-       endwhile;
-       $nextmonth = date("Y-M",strtotime($mes."+ 1 month"));
-       $lastmonth = date("Y-M",strtotime($mes."- 1 month"));
-       $month = date("M",strtotime($mes));
-       $yearmonth = date("Y",strtotime($mes));
-       //$month = date("M",strtotime("2019-03"));
-       $data = array(
-         'next' => $nextmonth,
-         'month'=> $month,
-         'year' => $yearmonth,
-         'last' => $lastmonth,
-         'calendar' => $calendario,
-       );
-       return $data;
-     }
- 
-     public static function spanish_month($month)
-     {
- 
-         $mes = $month;
-         if ($month=="Jan") {
-           $mes = "Enero";
-         }
-         elseif ($month=="Feb")  {
-           $mes = "Febrero";
-         }
-         elseif ($month=="Mar")  {
-           $mes = "Marzo";
-         }
-         elseif ($month=="Apr") {
-           $mes = "Abril";
-         }
-         elseif ($month=="May") {
-           $mes = "Mayo";
-         }
-         elseif ($month=="Jun") {
-           $mes = "Junio";
-         }
-         elseif ($month=="Jul") {
-           $mes = "Julio";
-         }
-         elseif ($month=="Aug") {
-           $mes = "Agosto";
-         }
-         elseif ($month=="Sep") {
-           $mes = "Septiembre";
-         }
-         elseif ($month=="Oct") {
-           $mes = "Octubre";
-         }
-         elseif ($month=="Nov") {
-           $mes = "Noviembre";
-         }
-         elseif ($month=="Dec") {
-           $mes = "Diciembre";
-         }
-         else {
-           $mes = $month;
-         }
-         return $mes;
-     }
-     public function details($id){
-
-      $reserva = Reservas::find($id);
-
-      return view("Calendario/detalle",[
-        "reserva" => $reserva
-      ]);
 
     }
 }

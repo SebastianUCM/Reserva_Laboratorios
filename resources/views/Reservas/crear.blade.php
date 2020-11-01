@@ -39,6 +39,16 @@
                                 <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" value="<?php echo date("d-m-Y\TH-i");?>" required="true">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="atomica" class="col-md-4 col-form-label text-md-right">{{ __('Atomica') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="atomica">
+                                    <option selected="true" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>    
+                                    <option value="si">SI</option> 
+                                    <option value="no" >NO</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="Motivo" class="col-md-4 col-form-label text-md-right">{{ __('Motivo') }}</label>
