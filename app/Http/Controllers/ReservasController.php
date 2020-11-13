@@ -8,6 +8,7 @@ use App\Laboratorios;
 use App\User;
 use Carbon\Carbon;
 use App\Event;
+Use Session;
 
 //use DB;
 use Illuminate\Http\Response;
@@ -85,27 +86,29 @@ class ReservasController extends Controller
           $reserva->Motivo = $request->Motivo;
           $reserva->Laboratorio_id = $request->Laboratorio_id;
           $reserva->Usuario_id = $request->Usuario_id;
-          $reserva->save();
           
+             
 
 
           if($validate['atomica']=='si'){
-            $envio =$this->verificar_disp($reserva->Fecha_inicio,$reserva->Fecha_fin,$reserva->Modulos,$validate);
-            if($envio){
+            $envios =$this->verificar_disp($reserva->Fecha_inicio,$reserva->Fecha_fin,$reserva->Modulos,$validate);
+            //dd($envios);
+            if($envios){
               $error="Ya existe una reserva en donde está solicitando reservar";
-              return back()->with(compact('envio'));
+              //return redirect('/Reservas',compact('error'))->with('danger','ERROR DE REGISTRO');
             };         
           }
+          $reserva->save();
           
-
+          
 
 
           if($request)                  //Si llega una peticón .... NO ELIMINAR
 
           $diaPivote = $request->Fecha_inicio;
-          //dd($request->all(),$diaPivote);
+          $Fecha_final=Carbon::parse($request->Fecha_fin)->addDays(1);
 
-          while($diaPivote<=$request->Fecha_fin){
+          while($diaPivote <= $Fecha_final){
 
             foreach($request->Modulos as $ModuloPivote){
               if((carbon::parse($diaPivote)->dayOfWeek )=='1'){     //Esto equivale al Día Lunes//
@@ -117,6 +120,8 @@ class ReservasController extends Controller
                   $evento->usuario_id = $request->Usuario_id;
                   $evento->laboratorio_id = $request->Laboratorio_id;
                   $evento->reserva_id = $reserva->id;
+                  //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
+                  //dd($diaPivote);
                   $evento->save();
                 }
               }
@@ -130,6 +135,8 @@ class ReservasController extends Controller
                   $evento->usuario_id = $request->Usuario_id;
                   $evento->laboratorio_id = $request->Laboratorio_id;
                   $evento->reserva_id = $reserva->id;
+                  //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
+                  //dd($diaPivote);
                   $evento->save();
                 }
               }
@@ -143,6 +150,7 @@ class ReservasController extends Controller
                   $evento->usuario_id = $request->Usuario_id;
                   $evento->laboratorio_id = $request->Laboratorio_id;
                   $evento->reserva_id = $reserva->id;
+                  //dd($diaPivote);
                   $evento->save();
                 }
               }
@@ -159,6 +167,7 @@ class ReservasController extends Controller
                   $evento->save();
                 }
               }
+
               if((carbon::parse($diaPivote)->dayOfWeek )=='5'){     //Esto equivale al Día Viernes//
                 if($ModuloPivote>=49 && $ModuloPivote<=60){
                   $evento = new Event();
@@ -171,6 +180,7 @@ class ReservasController extends Controller
                   $evento->save();
                 }
               }
+
               if((carbon::parse($diaPivote)->dayOfWeek )=='6'){     //Esto equivale al Día Sábado//
                 if($ModuloPivote>=61 && $ModuloPivote<=72){
                   $evento = new Event();
@@ -186,6 +196,7 @@ class ReservasController extends Controller
             }
             $diaPivote=Carbon::parse($diaPivote)->addDays(1);
           }
+          //dd($ModuloPivote);
           return redirect('/Reservas');  
 
     }
@@ -193,8 +204,6 @@ class ReservasController extends Controller
       $arreglo=[];
       $diaPivote=$Fecha_inicio;
       while($diaPivote <=$Fecha_fin){
-
-
         foreach($Modulos as $ModuloPivote){
 
           if((carbon::parse($diaPivote)->dayOfWeek )=='1'){

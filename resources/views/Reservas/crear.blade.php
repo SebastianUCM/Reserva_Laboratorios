@@ -23,8 +23,22 @@
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Crear una Reserva') }}</div>
 
                 <div class="card-body">
+                    @if(session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                            {{ session('envios') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ url('/Reservas') }}">
                     {{ csrf_field() }}
+
+
 
                         <div class="form-group row">
                             <label for="Fecha_inicio" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Inicio') }}</label>
@@ -36,7 +50,7 @@
                         <div class="form-group row">
                             <label for="Fecha_fin" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Fin') }}</label>
                             <div class="col-md-6">
-                                <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" value="<?php echo date("d-m-Y\TH-i");?>" required="true">
+                                <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" required="true">
                             </div>
                         </div>
                         <div class="form-group row">
