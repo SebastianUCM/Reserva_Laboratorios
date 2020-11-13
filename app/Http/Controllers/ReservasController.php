@@ -76,49 +76,60 @@ class ReservasController extends Controller
           'Laboratorio_id'=>'required',
           'Modulos'=>'required',
           'Laboratorio_id'=>'required',
+          'Usuario_id'=>'required',
           'atomica'=>'required',
         ]);
 
           $reserva = new Reservas;
-          $reserva->Fecha_inicio = $request->Fecha_inicio;
-          $reserva->Fecha_fin = $request->Fecha_fin;
-          $reserva->Modulos = $request->Modulos;
-          $reserva->Motivo = $request->Motivo;
-          $reserva->Laboratorio_id = $request->Laboratorio_id;
-          $reserva->Usuario_id = $request->Usuario_id;
-          
-             
+          $reserva->Fecha_inicio = $validate['Fecha_inicio'];
+          $reserva->Fecha_fin = $validate['Fecha_fin'];
+          $reserva->Modulos = $validate['Modulos'];
+          $reserva->Motivo = $validate['Motivo'];
+          $reserva->Laboratorio_id = $validate['Laboratorio_id'];
+          $reserva->Usuario_id = $validate['Usuario_id'];
 
+
+          
+
+          $fecha_ini=$validate['Fecha_inicio'];
+          $fecha_final=$validate['Fecha_fin'];
+          $ModulosSeleccionados=$validate['Modulos'];
+
+          if($fecha_ini< Carbon::now()){
+            return back()->with('failure', 'ERROR! No es permitido ingresar una fecha anterior a la actual');
+          }
+          if($fecha_ini > $fecha_final){
+            return back()->with('failure', 'ERROR! La Fecha inicial debe ser menor o igual a la Fecha Final');
+          }
+
+    
 
           if($validate['atomica']=='si'){
-            $envios =$this->verificar_disp($reserva->Fecha_inicio,$reserva->Fecha_fin,$reserva->Modulos,$validate);
+            $envios =$this->verificar_disp($fecha_ini,$fecha_final,$ModulosSeleccionados,$validate);
             //dd($envios);
             if($envios){
-              $error="Ya existe una reserva en donde está solicitando reservar";
-              //return redirect('/Reservas',compact('error'))->with('danger','ERROR DE REGISTRO');
+              return back()->with('failure', 'Ya existe una reserva en donde está solicitando reservar');
             };         
           }
+          
+          
+          if($validate)                  //Si llega una peticón .... NO ELIMINAR
+
+          $diaPivote = $fecha_ini;
+          $Fecha_final=Carbon::parse($fecha_final)->addDays(1);
           $reserva->save();
-          
-          
-
-
-          if($request)                  //Si llega una peticón .... NO ELIMINAR
-
-          $diaPivote = $request->Fecha_inicio;
-          $Fecha_final=Carbon::parse($request->Fecha_fin)->addDays(1);
 
           while($diaPivote <= $Fecha_final){
 
-            foreach($request->Modulos as $ModuloPivote){
+            foreach($ModulosSeleccionados as $ModuloPivote){
               if((carbon::parse($diaPivote)->dayOfWeek )=='1'){     //Esto equivale al Día Lunes//
                 if($ModuloPivote>=1 && $ModuloPivote<=12){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
                   //dd($diaPivote);
@@ -129,11 +140,11 @@ class ReservasController extends Controller
               if((carbon::parse($diaPivote)->dayOfWeek )=='2'){     //Esto equivale al Día Martes//
                 if($ModuloPivote>=13 && $ModuloPivote<=24){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
                   //dd($diaPivote);
@@ -144,11 +155,11 @@ class ReservasController extends Controller
               if((carbon::parse($diaPivote)->dayOfWeek )=='3'){     //Esto equivale al Día Miercoles//
                 if($ModuloPivote>=25 && $ModuloPivote<=36){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   //dd($diaPivote);
                   $evento->save();
@@ -158,11 +169,11 @@ class ReservasController extends Controller
               if((carbon::parse($diaPivote)->dayOfWeek )=='4'){     //Esto equivale al Día Jueves//
                 if($ModuloPivote>=37 && $ModuloPivote<=48){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   $evento->save();
                 }
@@ -171,11 +182,11 @@ class ReservasController extends Controller
               if((carbon::parse($diaPivote)->dayOfWeek )=='5'){     //Esto equivale al Día Viernes//
                 if($ModuloPivote>=49 && $ModuloPivote<=60){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   $evento->save();
                 }
@@ -184,11 +195,11 @@ class ReservasController extends Controller
               if((carbon::parse($diaPivote)->dayOfWeek )=='6'){     //Esto equivale al Día Sábado//
                 if($ModuloPivote>=61 && $ModuloPivote<=72){
                   $evento = new Event();
-                  $evento->title = $request->Motivo;
+                  $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
                   $evento->modulo = ($ModuloPivote%12);
-                  $evento->usuario_id = $request->Usuario_id;
-                  $evento->laboratorio_id = $request->Laboratorio_id;
+                  $evento->usuario_id = $validate['Usuario_id'];
+                  $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
                   $evento->save();
                 }
@@ -197,49 +208,65 @@ class ReservasController extends Controller
             $diaPivote=Carbon::parse($diaPivote)->addDays(1);
           }
           //dd($ModuloPivote);
+          //return back()->with('success', 'Correcto!. Fue creada correctamente!!');
           return redirect('/Reservas');  
 
     }
-    public function verificar_disp($Fecha_inicio,$Fecha_fin,$Modulos,$validate){
+    public function verificar_disp($fecha_ini,$fecha_final,$ModulosSeleccionados,$validate){
       $arreglo=[];
-      $diaPivote=$Fecha_inicio;
-      while($diaPivote <=$Fecha_fin){
-        foreach($Modulos as $ModuloPivote){
+      $diaPivote=$fecha_ini;
+      while($diaPivote <=$fecha_final){
+        foreach($ModulosSeleccionados as $ModuloPivote){
 
           if((carbon::parse($diaPivote)->dayOfWeek )=='1'){
             if($ModuloPivote>=1 && $ModuloPivote<=12){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
+              
+              //dd($arreglo,$evento);
+              
             }
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='2'){
             if($ModuloPivote>=13 && $ModuloPivote<=24){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
             }
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='3'){
             if($ModuloPivote>=25 && $ModuloPivote<=36){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
             }
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='4'){
             if($ModuloPivote>=37 && $ModuloPivote<=48){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
             }
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='5'){
             if($ModuloPivote>=49 && $ModuloPivote<=60){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
             }
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='6'){
             if($ModuloPivote>=61 && $ModuloPivote<=72){
               $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
-              array_push($arreglo,$evento);
+              if($evento){
+                array_push($arreglo,$evento);
+              }
             }
           }
           $diaPivote=Carbon::parse($diaPivote)->addDays(1);
@@ -247,11 +274,7 @@ class ReservasController extends Controller
         return ($arreglo);
       }
 
-
-
-
     }
-
 
 
 
