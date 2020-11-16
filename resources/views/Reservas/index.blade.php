@@ -35,6 +35,7 @@
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>
                                 <th>Motivo</th>
+                                <th>Modulos</th>
                                 <th>Usuario</th>
                                 @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                                 <th>Acción</th>
@@ -50,6 +51,38 @@
                             <td>{{$reserva->Fecha_inicio}}</td>
                             <td>{{$reserva->Fecha_fin}}</td>
                             <td>{{$reserva->Motivo}}</td>
+                            <td> 
+
+                                <ul>
+                                @php ($array = json_decode($reserva->Modulos, true))
+                                @foreach($array as $modulo)
+
+                                @if($modulo>=1 && $modulo<=12)
+                                    <li>Lunes: {{ $modulo }}</li>
+                                @endif
+
+                                @if($modulo>=13 && $modulo<=24)
+                                    <li>Martes: {{ $modulo-12 }}</li>
+                                @endif
+
+
+                                @if($modulo>=25 && $modulo<=36)
+                                    <li>Miercoles: {{ $modulo-24}}</li>
+                                @endif
+
+                                @if($modulo>=37 && $modulo<=48)
+                                    <li>Jueves: {{ $modulo-36}}</li>
+                                @endif
+
+                                @if($modulo>=49 && $modulo<=60)
+                                    <li>Viernes: {{ $modulo-48}}</li>
+                                @endif
+
+                                @if($modulo>=61 && $modulo<=72)
+                                    <li>Sabado: {{ $modulo-60}}</li>
+                                @endif
+                                @endforeach
+                                </ul></td>
                             <td>{{$reserva->Usuario}}</td>
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                             <td>
