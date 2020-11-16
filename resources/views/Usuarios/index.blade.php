@@ -32,7 +32,7 @@
                                 <th>Nombre</th>
                                 <th>Correo Electronico</th>
                                 <th>Rol</th>
-                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador')
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador' or Auth::user()->rol == 'Encargado/a')
                                 <th>Accion</th>
                                 <th>Accion</th>
                                 <th></th>
@@ -47,7 +47,7 @@
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
                                 <td>{{$usuario->rol}}</td>
-                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador')
+                                @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Administrador' or Auth::user()->rol == 'Encargado/a')
                                 <td>
                                 <form method="GET" action="/Usuarios/{{$usuario->id}}/edit">
                                 <button type="submit" class="btn btn-warning">Editar</button>
