@@ -32,8 +32,20 @@ class ReservasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      $laboratorios=Laboratorios::all();
+      $reservas=Reservas::all();
+
+      $lab = $request->get('Laboratorio_id');
+      //dd($lab);
+
+      $resevs= Reservas::where('Laboratorio_id','like',"%$lab%")
+      ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')->
+      join('users','users.id','=','reservas.Usuario_id')
+      ->select('reservas.id','reservas.Fecha_inicio','reservas.Fecha_fin','reservas.Modulos','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
+      ->paginate(5);
+
         $reservas = DB::table('reservas')
         ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')
         ->join('users','users.id','=','reservas.Usuario_id')
@@ -41,7 +53,8 @@ class ReservasController extends Controller
         ->OrderBy('Laboratorio')
         ->get();
 
-        return view('reservas.index',compact('reservas'));
+
+        return view('reservas.index',compact('laboratorios','resevs'));
     }
 
     /**
@@ -498,19 +511,42 @@ class ReservasController extends Controller
      * @param  \App\Reservas  $reservas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
-    {
+    public function update(Request $request,$id){
+
+      $validate = $request->validate([
+        'Fecha_inicio' => 'required',
+        'Fecha_fin' => 'required',
+        'Motivo'=>'required',
+        'Laboratorio_id'=>'required',
+        'Modulos'=>'required',
+        'Laboratorio_id'=>'required',
+        'Usuario_id'=>'required',
+      ]);
         $nuevoDato=Reservas::find($id);
-        $nuevoDato->Fecha = $request->Fecha;
-        $nuevoDato->Modulo_inicio = $request->Modulo_inicio;
-        $nuevoDato->Modulo_fin = $request->Modulo_fin;
-        $nuevoDato->Motivo = $request->Motivo;
-        $nuevoDato->Laboratorio_id= $request->Laboratorio_id;
-        $nuevoDato->Usuario_id = $request->Usuario_id;
+
+        $nuevoDato->Fecha_inicio =$validate['Fecha_inicio'];
+        $nuevoDato->Fecha_fin = $validate['Fecha_fin'];
+
+        $nuevoDato->Motivo =  $validate['Motivo'];
+        $nuevoDato->Laboratorio_id= $validate['Laboratorio_id'];
+        $nuevoDato->Usuario_id = $validate['Usuario_id'];
+
+
+        $fecha_ini=$validate['Fecha_inicio'];
+        $fecha_final=$validate['Fecha_fin'];
+        $ModulosSeleccionados=$validate['Modulos'];
+
+        $informacion=$this->reservar_disp($fecha_ini,$fecha_final,$ModulosSeleccionados,$validate);
+        if(!$informacion){
+          return back()->with('failure', 'Error!! No hay disponibilidad en donde usted está Solicitando');
+
+        }else{
+          $nuevoDato->save();
+          return redirect("Reservas");
+
+        }
         
-        $nuevoDato->save();
         
-        return redirect("Reservas");
     }
 
     /**

@@ -26,6 +26,23 @@
                             <a href="/Reservas/create" class="btn btn-success">Crear una Reserva</a>
                         @endif
                     </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                    <form class="form-inline">
+                        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
+                        <!--<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"> !-->
+                        <select class="form-control mr-2" name="Laboratorio_id" id="Laboratorio_id" size=1>
+                        @foreach($laboratorios as $laboratorio)
+                            <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
+                        @endforeach
+                        </select>
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
+                        @endif
+                    </ul>
+
+
+
                 </div>
                 <table class="table table-light">
                         <thead class="thead-light ">
@@ -35,7 +52,6 @@
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>
                                 <th>Motivo</th>
-                                <th>Modulos</th>
                                 <th>Usuario</th>
                                 @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                                 <th>Acción</th>
@@ -44,54 +60,23 @@
 
                             </tr>
                         </thead>
-                        @foreach($reservas as $reserva)
+                        @foreach($resevs as $resev)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$reserva->Laboratorio}}</td>
-                            <td>{{$reserva->Fecha_inicio}}</td>
-                            <td>{{$reserva->Fecha_fin}}</td>
-                            <td>{{$reserva->Motivo}}</td>
-                            <td> 
-
-                                <ul>
-                                @php ($array = json_decode($reserva->Modulos, true))
-                                @foreach($array as $modulo)
-
-                                @if($modulo>=1 && $modulo<=12)
-                                    <li>Lunes: {{ $modulo }}</li>
-                                @endif
-
-                                @if($modulo>=13 && $modulo<=24)
-                                    <li>Martes: {{ $modulo-12 }}</li>
-                                @endif
-
-
-                                @if($modulo>=25 && $modulo<=36)
-                                    <li>Miercoles: {{ $modulo-24}}</li>
-                                @endif
-
-                                @if($modulo>=37 && $modulo<=48)
-                                    <li>Jueves: {{ $modulo-36}}</li>
-                                @endif
-
-                                @if($modulo>=49 && $modulo<=60)
-                                    <li>Viernes: {{ $modulo-48}}</li>
-                                @endif
-
-                                @if($modulo>=61 && $modulo<=72)
-                                    <li>Sabado: {{ $modulo-60}}</li>
-                                @endif
-                                @endforeach
-                                </ul></td>
-                            <td>{{$reserva->Usuario}}</td>
+                            <td>{{$resev->Laboratorio}}</td>
+                            <td>{{$resev->Fecha_inicio}}</td>
+                            <td>{{$resev->Fecha_fin}}</td>
+                            <td>{{$resev->Motivo}}</td>
+                            <td>{{$resev->Usuario}}</td>
+                            
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                             <td>
-                                <form method="GET" action="/Reservas/{{$reserva->id}}/edit">
+                                <form method="GET" action="/Reservas/{{$resev->id}}/edit">
                                     <button type="submit" class="btn btn-warning">Editar</button>
                                 </form>
                             </td>
                             <td>
-                                <form method="POST" action="/Reservas/{{$reserva->id}}">
+                                <form method="POST" action="/Reservas/{{$resev->id}}">
                                     {{csrf_field()}}
                                     @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>

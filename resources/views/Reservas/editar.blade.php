@@ -33,14 +33,14 @@
                             <div class="col-md-6">
                                 <input type="date" id="Fecha_inicio" class="form-control" name="Fecha_inicio" value="{{$reserva->Fecha_inicio}}" required="true">
                             </div>
-                        </div>
+                    </div>
 
-                        <div class="form-group row">
+                    <div class="form-group row">
                             <label for="Fecha_fin" class="col-md-4 col-form-label text-md-right">{{ __('Fecha Fin') }}</label>
                             <div class="col-md-6">
                                 <input type="date" id="Fecha_fin" class="form-control" name="Fecha_fin" value="{{$reserva->Fecha_fin}}" required="true">
                             </div>
-                        </div>
+                    </div>
 
                         <div class="form-group row">
                             <label for="Motivo" class="col-md-4 col-form-label text-md-right">{{ __('Motivo') }}</label>
