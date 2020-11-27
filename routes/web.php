@@ -33,8 +33,10 @@ Route::resource('Reservas', 'ReservasController');
 
 Route::resource('User', 'UsuariosController');
 
-Route::get('Calendario/reserva/{mes}','CalendarioController@index_month');
-Route::get('Calendario/reserva','CalendarioController@index');
+Route::get('/Reservas/{reserva}/Modulos', 'ReservasController@ActualizarModulo');
+Route::put('/Reservas/{reserva}/Modulos_update', 'ReservasController@ModificarModulos');
+
+
 
 Route::get('Reserva/index','ReservasController@index_C');
 Route::get('Reserva/detalle/{id}','ReservasController@details');

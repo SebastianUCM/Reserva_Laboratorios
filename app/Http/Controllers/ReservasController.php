@@ -152,7 +152,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -167,7 +167,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -182,7 +182,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -196,7 +196,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -209,7 +209,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -222,7 +222,7 @@ class ReservasController extends Controller
                         $evento = new Event();
                         $evento->title = $validate['Motivo'];
                         $evento->start = $diaPivote;
-                        $evento->modulo = ($ModuloPivote%12);
+                        $evento->modulo = ($ModuloPivote );
                         $evento->usuario_id = $validate['Usuario_id'];
                         $evento->laboratorio_id = $validate['Laboratorio_id'];
                         $evento->reserva_id = $reserva->id;
@@ -254,7 +254,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -269,7 +269,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -284,7 +284,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -298,7 +298,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -311,7 +311,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -324,7 +324,7 @@ class ReservasController extends Controller
                   $evento = new Event();
                   $evento->title = $validate['Motivo'];
                   $evento->start = $diaPivote;
-                  $evento->modulo = ($ModuloPivote%12);
+                  $evento->modulo = ($ModuloPivote );
                   $evento->usuario_id = $validate['Usuario_id'];
                   $evento->laboratorio_id = $validate['Laboratorio_id'];
                   $evento->reserva_id = $reserva->id;
@@ -340,6 +340,7 @@ class ReservasController extends Controller
 
     }
     public function verificar_disp($fecha_ini,$fecha_final,$ModulosSeleccionados,$validate){
+
       $arreglo=[];
       $diaPivote=$fecha_ini;
       $Fecha_final=Carbon::parse($fecha_final)->addDays(1);
@@ -417,7 +418,7 @@ class ReservasController extends Controller
 
           if((carbon::parse($diaPivote)->dayOfWeek )=='1'){
             if($ModuloPivote>=1 && $ModuloPivote<=12){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               //print_r($evento->modulo);
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
@@ -428,7 +429,7 @@ class ReservasController extends Controller
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='2'){
             if($ModuloPivote>=13 && $ModuloPivote<=24){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
@@ -440,7 +441,7 @@ class ReservasController extends Controller
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='3'){
             if($ModuloPivote>=25 && $ModuloPivote<=36){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
               }
@@ -448,7 +449,7 @@ class ReservasController extends Controller
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='4'){
             if($ModuloPivote>=37 && $ModuloPivote<=48){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
               }
@@ -456,7 +457,7 @@ class ReservasController extends Controller
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='5'){
             if($ModuloPivote>=49 && $ModuloPivote<=60){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
               }
@@ -464,7 +465,7 @@ class ReservasController extends Controller
           }
           if((carbon::parse($diaPivote)->dayOfWeek )=='6'){
             if($ModuloPivote>=61 && $ModuloPivote<=72){
-              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote%12)->where('laboratorio_id',$validate['Laboratorio_id'])->first();
+              $evento = Event::where('start',$diaPivote)->where('modulo',$ModuloPivote )->where('laboratorio_id',$validate['Laboratorio_id'])->first();
               if(!$evento){
                 array_push($arreglo,$ModuloPivote);
               }
@@ -476,6 +477,108 @@ class ReservasController extends Controller
        
       }
       return ($arreglo);
+    }
+
+
+
+
+    public function guardado($Fecha_inicio,$ModulosSeleccionados,$Fecha_final,$validate,$reserva){
+
+      $diaPivote= $Fecha_inicio;
+
+      $informacion=$this->reservar_disp($Fecha_inicio,$Fecha_final,$ModulosSeleccionados,$validate);
+
+      while($diaPivote <= $Fecha_final){
+
+        foreach($informacion as $ModuloPivote){
+          if((carbon::parse($diaPivote)->dayOfWeek )=='1'){     //Esto equivale al Día Lunes//
+            if($ModuloPivote>=1 && $ModuloPivote<=12){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
+              //dd($diaPivote);
+              $evento->save();
+            }
+          }
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='2'){     //Esto equivale al Día Martes//
+            if($ModuloPivote>=13 && $ModuloPivote<=24){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              //dd($evento->title,$evento->start,$evento->modulo,$evento->usuario_id,$evento->laboratorio_id,$evento->reserva_id);
+              //dd($diaPivote);
+              $evento->save();
+            }
+          }
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='3'){     //Esto equivale al Día Miercoles//
+            if($ModuloPivote>=25 && $ModuloPivote<=36){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              //dd($diaPivote);
+              $evento->save();
+            }
+          }
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='4'){     //Esto equivale al Día Jueves//
+            if($ModuloPivote>=37 && $ModuloPivote<=48){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              $evento->save();
+            }
+          }
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='5'){     //Esto equivale al Día Viernes//
+            if($ModuloPivote>=49 && $ModuloPivote<=60){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              $evento->save();
+            }
+          }
+
+          if((carbon::parse($diaPivote)->dayOfWeek )=='6'){     //Esto equivale al Día Sábado//
+            if($ModuloPivote>=61 && $ModuloPivote<=72){
+              $evento = new Event();
+              $evento->title = $validate['Motivo'];
+              $evento->start = $diaPivote;
+              $evento->modulo = ($ModuloPivote );
+              $evento->usuario_id = $validate['Usuario_id'];
+              $evento->laboratorio_id = $validate['Laboratorio_id'];
+              $evento->reserva_id = $reserva->id;
+              $evento->save();
+            }
+          }             
+        }
+        $diaPivote=Carbon::parse($diaPivote)->addDays(1);
+      }
+      //dd($ModuloPivote);
+      //return back()->with('success', 'Correcto!. Fue creada correctamente!!');
+
     }
 
 
@@ -541,13 +644,82 @@ class ReservasController extends Controller
           return back()->with('failure', 'Error!! No hay disponibilidad en donde usted está Solicitando');
 
         }else{
-          $nuevoDato->save();
+          //$nuevoDato->save();
           return redirect("Reservas");
 
         }
         
         
     }
+    public function ActualizarModulo(Reservas $reserva){
+      return view('Reservas.editar_modulo', compact('reserva'));
+    }
+
+    public function ModificarModulos(Reservas $reserva, Request $request){
+
+
+
+      $validate = $request->validate([
+        'Fecha_inicio' => 'required',
+        'Fecha_fin' => 'required',
+        'Motivo'=>'required',
+        'Laboratorio_id'=>'required',
+        'Modulos'=>'required',
+        'Laboratorio_id'=>'required',
+        'Usuario_id'=>'required',
+
+
+      ]);
+        $fecha_ini=$validate['Fecha_inicio'];
+        $fecha_final=$validate['Fecha_fin'];
+        $ModulosSeleccionados=$validate['Modulos'];
+
+        $ModulosNuevos=[];
+
+        foreach($request->Modulos as $Modulo){         //Voy recorriendo Lo recibido de la vista como un Módulo
+          if(in_array($Modulo,$reserva->Modulos)){     //Verifico si está dentro del arreglo
+
+          }
+          else{                                        //Si no está dentro, pasa a una nueva variable vacia 
+            $ModulosNuevos[]=$Modulo;
+
+          }
+        }
+        //dd($ModulosNuevo);
+        $informacion =$this->verificar_disp($fecha_ini,$fecha_final,$ModulosNuevos,$validate);
+
+        if($informacion){
+          return back()->with('failure', 'ERROR!. Ese módulo está ocupado');
+        }
+        $this->guardado($fecha_ini,$ModulosSeleccionados,$fecha_final,$validate,$reserva);
+
+        foreach($reserva->Modulos as $ModuloOriginal){
+          if(in_array($ModuloOriginal,$request->Modulos)){
+          }
+          else{
+            $eventos = Event::where('reserva_id',$reserva->id)
+                ->whereDate('start','>=',$fecha_ini)
+                ->whereDate('start','<=',$fecha_final)
+                ->where('modulo',$ModuloOriginal)
+                ->get();
+                foreach($eventos as $evento){
+                  $evento->destroy($evento->id);
+                }            
+          }
+        }
+        
+        
+        $reserva->Modulos = $ModulosSeleccionados;
+
+
+        $reserva->save();
+        return back()->with('success', 'Correcto!. Se ha modificado Correctamente!');
+
+    }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -574,38 +746,5 @@ class ReservasController extends Controller
         
         }
         return redirect('/Reservas');
-    }
-
-    private function horarioReservado($request){
-        $reservado = false;
-        $reserva_inicial = Reservas::where('Fecha',$request->fecha)
-        ->where('Laboratorio_id',$request->Laboratorio_id)
-        ->where('Modulo_inicio','<=',$request->Modulo_inicio)
-        ->where('Modulo_fin','>=',$request->Modulo_fin)
-        ->count();
-        if($reserva_inicial > 0){
-            $reservado = true;
-        }
-
-        $reserva_final = Reservas::where('Fecha',$request->Fecha)
-        ->where('Laboratorio_id',$request->Laboratorio_id)
-        ->where('Modulo_inicio','<=',$request->Modulo_fin)
-        ->where('Modulo_fin','>=',$request->Modulo_fin)
-        ->count();
-        if($reserva_final > 0){
-            $reservado = true;
-        }
-
-        $reserva_inicial_final = Reservas::where('Fecha',$request->Fecha)
-        ->where('Laboratorio_id',$request->Laboratorio_id)
-        ->where('Modulo_inicio','>=',$request->Modulo_inicio)
-        ->where('Modulo_fin','<=',$request->Modulo_fin)
-        ->count();
-        if($reserva_inicial_final > 0){
-            $reservado = true;
-        }
-
-        return $reservado;
-
     }
 }

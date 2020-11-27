@@ -54,7 +54,7 @@
                                 <th>Motivo</th>
                                 <th>Usuario</th>
                                 @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
-                                <th>Acción</th>
+                                <th>Editar</th>
                                 <th>Acción</th>
                                 @endif
 
@@ -72,9 +72,17 @@
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                             <td>
                                 <form method="GET" action="/Reservas/{{$resev->id}}/edit">
-                                    <button type="submit" class="btn btn-warning">Editar</button>
+                                    <button type="submit" class="btn btn-warning">Fecha</button>
+                                </form>
+                                <form method="GET" action="{{ url('/Reservas/'.$resev->id.'/Modulos')}}">
+                                    <button type="submit" class="btn btn-warning">Modulos</button>
+                                </form>
+                                <form method="GET" action="/Reservas/{{$resev->id}}/edit">
+                                    <button type="submit" class="btn btn-warning">Periodo</button>
                                 </form>
                             </td>
+
+
                             <td>
                                 <form method="POST" action="/Reservas/{{$resev->id}}">
                                     {{csrf_field()}}
