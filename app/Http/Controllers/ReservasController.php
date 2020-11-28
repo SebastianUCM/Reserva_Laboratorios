@@ -40,19 +40,11 @@ class ReservasController extends Controller
       $lab = $request->get('Laboratorio_id');
       //dd($lab);
 
-      $resevs= Reservas::where('Laboratorio_id','like',"%$lab%")
+      $resevs= DB::table('reservas')->where('Laboratorio_id','like',"%$lab%")
       ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')->
       join('users','users.id','=','reservas.Usuario_id')
       ->select('reservas.id','reservas.Fecha_inicio','reservas.Fecha_fin','reservas.Modulos','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
       ->paginate(5);
-
-        $reservas = DB::table('reservas')
-        ->join('laboratorios','laboratorios.id', '=','reservas.Laboratorio_id')
-        ->join('users','users.id','=','reservas.Usuario_id')
-        ->select('reservas.id','reservas.Fecha_inicio','reservas.Fecha_fin','reservas.Modulos','reservas.Motivo','laboratorios.Nombre as Laboratorio','users.name as Usuario')
-        ->OrderBy('Laboratorio')
-        ->get();
-
 
         return view('reservas.index',compact('laboratorios','resevs'));
     }
