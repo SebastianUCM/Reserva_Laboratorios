@@ -649,8 +649,6 @@ class ReservasController extends Controller
 
     public function ModificarModulos(Reservas $reserva, Request $request){
 
-
-
       $validate = $request->validate([
         'Fecha_inicio' => 'required',
         'Fecha_fin' => 'required',
@@ -707,6 +705,33 @@ class ReservasController extends Controller
         $reserva->save();
         return back()->with('success', 'Correcto!. Se ha modificado Correctamente!');
 
+    }
+
+    public function desactivarFecha(Reservas $reserva){
+      return view('Reservas.desactivarfechas', compact('reserva'));
+
+    }
+
+    public function desocuparFecha(Request $request, Reservas $reserva){
+
+      $validate = $request->validate([
+        'Fecha_inicio' => 'required',
+        'Fecha_fin' => 'required',
+
+        'inicio_inactivacion' => ['required','after:'.$request['Fecha_inicio'], 'before:'.$request['Fecha_fin'],'before:'.$request['fin_inactivacion']],
+        'fin_inactivacion'=>['required','after:'.$request['Fecha_inicio'],'before:'.$request['Fecha_fin'],'after:'.$request['inicio_inactivacion']]
+      ]);
+
+      $eventos= Event::where('reserva_id','=',$reserva->id)
+      ->whereDate('start','>=',$validate['inicio_inactivacion'])
+      ->whereDate('start','<=',$validate['fin_inactivacion'])->get();
+
+      $eventoArreglos=$eventos->toArray();
+      foreach($eventoArreglos as $EventoPivote){
+        $evento_id= $EventoPivote['id'];
+        Event::destroy($evento_id); 
+      }
+      return back()->with('success', 'Correcto!. Se ha liberado correctamente la fecha solicitada!');
     }
 
 

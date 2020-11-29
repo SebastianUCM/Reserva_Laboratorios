@@ -36,6 +36,9 @@ Route::resource('User', 'UsuariosController');
 Route::get('/Reservas/{reserva}/Modulos', 'ReservasController@ActualizarModulo');
 Route::put('/Reservas/{reserva}/Modulos_update', 'ReservasController@ModificarModulos');
 
+Route::get('/Reservas/{reserva}/desactivar', 'ReservasController@desactivarFecha');
+Route::put('/Reservas/{reserva}/desactivar_Fechas', 'ReservasController@desocuparFecha');
+
 
 
 Route::get('Reserva/index','ReservasController@index_C');

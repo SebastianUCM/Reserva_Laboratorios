@@ -18,7 +18,7 @@
     @section('content')
     <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Reservas') }}
                     <ul class="navbar-nav ml-auto">
@@ -115,8 +115,8 @@
                                 <form method="GET" action="{{ url('/Reservas/'.$resev->id.'/Modulos')}}">
                                     <button type="submit" class="btn btn-warning">Modulos</button>
                                 </form>
-                                <form method="GET" action="/Reservas/{{$resev->id}}/edit">
-                                    <button type="submit" class="btn btn-warning">Periodo</button>
+                                <form method="GET" action="/Reservas/{{$resev->id}}/desactivar">
+                                    <button type="submit" class="btn btn-warning">Desact.Fecha</button>
                                 </form>
                             </td>
 
