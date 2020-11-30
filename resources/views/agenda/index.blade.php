@@ -62,7 +62,7 @@
 
                 },
                 locale: 'es',
-                events: {!! json_encode($datos_Eventos) !!}
+                events: {!! json_encode($eventos) !!}
             });
             calendar.render();
             function recolectarDatosGUI(method){
@@ -83,7 +83,27 @@
   </head>
   <div class="row">
         <div class="col"></div>
-        <div class="col-7"><div id='calendar'></div></div>
+        <div class="col-7">
+        <form class="form-inline">
+          @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
+          <!--<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"> !-->
+          <select class="form-control mr-2" name="id" id="id" size=1>
+          <option selected="false" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>
+          @foreach($laboratorios as $laboratorio)
+              <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
+              
+          @endforeach
+          </select>
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+          <a href="/agenda" class="btn btn-danger">Quitar Busqueda</a>
+          
+          </form>
+          @endif
+      </ul>
+
+
+
+          <div id='calendar'></div></div>
         <div class="col"></div>
   </div>
 
