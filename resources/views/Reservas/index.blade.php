@@ -54,7 +54,7 @@
                                 <th>N°Lista</th>
                                 <th>Laboratorio</th>
                                 <th>Fecha Inicio</th>
-                                <th>Fecha Fin</th>
+                                <th>Fecha Final</th>
                                 <th>Motivo</th>
                                 <th>Modulos</th>
                                 <th>Usuario</th>
@@ -69,8 +69,8 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$resev->Laboratorio}}</td>
-                            <td>{{$resev->Fecha_inicio}}</td>
-                            <td>{{$resev->Fecha_fin}}</td>
+                            <td>{{date('d-m-Y', strtotime($resev->Fecha_inicio))}}</td>
+                            <td>{{date('d-m-Y', strtotime($resev->Fecha_fin))}}</td>
                             <td>{{$resev->Motivo}}</td>
                             <td> 
 

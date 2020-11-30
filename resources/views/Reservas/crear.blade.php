@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="atomica" class="col-md-4 col-form-label text-md-right">{{ __('Atomica') }}</label>
+                                    <label for="atomica" class="col-md-4 col-form-label text-md-right">{{ __('Atómica') }}</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="atomica">
                                             <option selected="true" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>

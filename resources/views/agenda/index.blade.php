@@ -51,10 +51,10 @@
 
                   $('#txtID').val(info.event.id);
                   $('#txtTMotivo').val(info.event.title);
-                  $('#txtFecha').val(info.event.dateStr);
-                  $('#txtmodulos').val(info.event.extendedProps.modulo);
-                  $('#txtUsuario_id').val(info.event.extendedProps.usuario_id);
-                  $('#txtlaboratorio_id').val(info.event.extendedProps.laboratorio_id);
+                  $('#txtFecha').val(info.event.start);
+                  $('#txtmodulos').val(info.event.extendedProps.Modulos);
+                  $('#txtUsuario_id').val(info.event.extendedProps.name);
+                  $('#txtlaboratorio_id').val(info.event.extendedProps.Nombre);
                   $('#txtReserva_id').val(info.event.extendedProps.reserva_id);
                   $('#exampleModal').modal();
 
@@ -129,17 +129,14 @@
         Fecha:
         <input type="text" name="txtFecha" id="txtFecha"readonly>
         <br/>
-        Bloques:
+        Módulos:
         <input type="text" name="txtmodulos" id="txtmodulos"readonly>
         <br/>
-        Usuario id:
+        Usuario:
         <input type="text" name="txtUsuario_id" id="txtUsuario_id"readonly>
         <br/>
-        Laboratorio id:
+        Laboratorio:
         <input type="text" name="txtlaboratorio_id" id="txtlaboratorio_id"readonly>
-        <br/>
-        Reserva id:
-        <input type="text" name="txtReserva_id" id="txtReserva_id"readonly>
         <br/>
 
 
