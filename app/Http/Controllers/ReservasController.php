@@ -760,7 +760,7 @@ class ReservasController extends Controller
     }
 
     $ModulosTotales = $reserva->Modulos;
-    if($reserva->Fecha_inicio >= $validate['Fecha_fin']){//verificar cuando el inicio y final es antes del antiguo inicio
+    if($reserva->Fecha_inicio >= $validate['Fecha_fin']){ #Revisamos que el inicio sea mayor al mas antiguo
         $Fecha_i= $validate['Fecha_inicio'];
         $Fecha_f = $validate['Fecha_fin'];
         $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
@@ -780,7 +780,7 @@ class ReservasController extends Controller
     }
 
     
-    elseif($reserva->Fecha_fin <= $validate['Fecha_fin']){      //Revisa Si la Fecha final original es menor o igual a la Fecha Fin nueva
+    elseif($reserva->Fecha_fin <= $validate['Fecha_fin']){      //Revisa que la fecha Final Ingresada sea menor a la Fecha antigua
         $Fecha_i= $validate['Fecha_inicio'];
         $Fecha_f = $validate['Fecha_fin'];
         $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
@@ -802,7 +802,7 @@ class ReservasController extends Controller
     }
     else{
 
-        if($reserva->Fecha_inicio > $validate['Fecha_inicio']){      //Revisa si la Fecha de Inicio Original es mayor a la fecha del fomrulario
+        if($reserva->Fecha_inicio > $validate['Fecha_inicio']){      //Revisa si la nueva Fecha de Inicio que es original de Inicio Original es mayor a la fecha del antigua
             $Fecha_i= $validate['Fecha_inicio'];
             $Fecha_f = Carbon::parse($reserva->Fecha_inicio)->addDays(-1);            //Se resta un día del índice
             $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
@@ -811,7 +811,7 @@ class ReservasController extends Controller
             }; 
         }
 
-        if($reserva->Fecha_fin < $validate['Fecha_fin']){          //Revisa si la fecha final de origen es menor a la Fecha Fin ingresada del formulario
+        if($reserva->Fecha_fin < $validate['Fecha_fin']){          //Revisa si la fecha nueva final es menor a la Fecha Fin que estaba anteriormente
             $Fecha_i= Carbon::parse($reserva->Fecha_fin)->addDays(1);
             $Fecha_f = $validate['Fecha_fin'];
             $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
@@ -819,17 +819,19 @@ class ReservasController extends Controller
                 return back()->with(compact('datos')); 
             }; 
         }
-        if($reserva->fecha_inicial > $validate['Fecha_inicio']){         //Comprueba si está correctamente la Fecha original con la nueva
+
+
+        if($reserva->Fecha_inicio > $validate['Fecha_inicio']){         //Comprueba si la Fecha Inicial es mayor a la Fecha antigua
             $Fecha_i= $validate['Fecha_inicio'];
             $Fecha_f = $reserva->Fecha_inicio;
             $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
         }
-        if($reserva->Fecha_fin < $validate['Fecha_fin']){               //Recorre hasta la fecha Final
+        if($reserva->Fecha_fin < $validate['Fecha_fin']){               //Ve si la Fecha final nueva original es menor a la Fecha Fin antigua
             $Fecha_i= $reserva->Fecha_fin;
             $Fecha_f = $validate['Fecha_fin'];
             $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
         }
-        if($reserva->Fecha_inicio < $validate['Fecha_inicio']){          //Recorre hasta la fecha inicial
+        if($reserva->Fecha_inicio < $validate['Fecha_inicio']){          //Comrpueba si la Fecha Inicio Nueva Original es menor a la Fecha inicio antigua
             $eventos = Event::where('reserva_id',$reserva->id)
             ->whereDate('start','>=',$reserva->Fecha_inicio)
             ->whereDate('start','<',$validate['Fecha_inicio'])
@@ -840,7 +842,7 @@ class ReservasController extends Controller
                 Event::destroy($codigo);
             }
         }
-        if($reserva->Fecha_fin > $validate['Fecha_fin']){           //Recorro hasta la última fecha final    
+        if($reserva->Fecha_fin > $validate['Fecha_fin']){           //Si la Fecha Final Nueva Original es mayor a la fecha fin anitigua   
             $eventos = Event::where('reserva_id',$reserva->id)
             ->whereDate('start','>',$validate['Fecha_fin'])
             ->whereDate('start','<=',$reserva->Fecha_fin)
