@@ -606,43 +606,7 @@ class ReservasController extends Controller
      * @param  \App\Reservas  $reservas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id){
-
-      $validate = $request->validate([
-        'Fecha_inicio' => 'required',
-        'Fecha_fin' => 'required',
-        'Motivo'=>'required',
-        'Laboratorio_id'=>'required',
-        'Modulos'=>'required',
-        'Laboratorio_id'=>'required',
-        'Usuario_id'=>'required',
-      ]);
-        $nuevoDato=Reservas::find($id);
-
-        $nuevoDato->Fecha_inicio =$validate['Fecha_inicio'];
-        $nuevoDato->Fecha_fin = $validate['Fecha_fin'];
-
-        $nuevoDato->Motivo =  $validate['Motivo'];
-        $nuevoDato->Laboratorio_id= $validate['Laboratorio_id'];
-        $nuevoDato->Usuario_id = $validate['Usuario_id'];
-
-
-        $fecha_ini=$validate['Fecha_inicio'];
-        $fecha_final=$validate['Fecha_fin'];
-        $ModulosSeleccionados=$validate['Modulos'];
-
-        $informacion=$this->reservar_disp($fecha_ini,$fecha_final,$ModulosSeleccionados,$validate);
-        if(!$informacion){
-          return back()->with('failure', 'Error!! No hay disponibilidad en donde usted está Solicitando');
-
-        }else{
-          //$nuevoDato->save();
-          return redirect("Reservas");
-
-        }
-        
-        
-    }
+  
     public function ActualizarModulo(Reservas $reserva){
       return view('Reservas.editar_modulo', compact('reserva'));
     }
@@ -715,14 +679,17 @@ class ReservasController extends Controller
     public function desocuparFecha(Request $request, Reservas $reserva){
 
       $validate = $request->validate([
-        'Fecha_inicio' => 'required',
-        'Fecha_fin' => 'required',
-
-        'inicio_inactivacion' => ['required','after:'.$request['Fecha_inicio'], 'before:'.$request['Fecha_fin'],'before:'.$request['fin_inactivacion']],
-        'fin_inactivacion'=>['required','after:'.$request['Fecha_inicio'],'before:'.$request['Fecha_fin'],'after:'.$request['inicio_inactivacion']]
+          'Fecha_inicio' => 'required',
+          'Fecha_fin' => 'required',
+          'Modulos'=>'required',
+          'Motivo'=>'required',
+          'Laboratorio_id'=>'required',
+          'Usuario_id'=>'required',
+          'inicio_inactivacion' => ['required','after:'.$request['Fecha_inicio'], 'before:'.$request['Fecha_fin'],'before:'.$request['fin_inactivacion']],
+          'fin_inactivacion'=>['required','after:'.$request['Fecha_inicio'],'before:'.$request['Fecha_fin'],'after:'.$request['inicio_inactivacion']],
       ]);
 
-      $eventos= Event::where('reserva_id','=',$reserva->id)
+      $eventos= Event::where('reserva_id','=',$reserva->id)          //Busco En la tabla de Eventos si la Id de la tabla reserva está en la tabla de Eventos
       ->whereDate('start','>=',$validate['inicio_inactivacion'])
       ->whereDate('start','<=',$validate['fin_inactivacion'])->get();
 
@@ -732,6 +699,138 @@ class ReservasController extends Controller
         Event::destroy($evento_id); 
       }
       return back()->with('success', 'Correcto!. Se ha liberado correctamente la fecha solicitada!');
+    }
+
+    public function VistaModFechas(Reservas $reserva){
+      return view('Reservas.ModificarFechas', compact('reserva'));
+
+    }
+    public function ModificarFecha(Request $request, Reservas $reserva){
+
+
+
+      $validate = $request->validate([
+        'Fecha_inicio' => 'required',
+        'Fecha_fin' => 'required',
+        'Motivo'=>'required',
+        'Laboratorio_id'=>'required',
+        'Modulos'=>'required',
+        'Laboratorio_id'=>'required',
+        'Usuario_id'=>'required',
+
+
+      ]);
+
+    if($validate['Fecha_inicio']> $validate['Fecha_fin']){
+      return back()->with('failure', 'Error!. La fecha de Inicio debe ser Menor a la Fecha Final');
+
+    }
+    if($validate['Fecha_fin']< $validate['Fecha_inicio']){
+      return back()->with('failure', 'Error!. La fecha de Fin debe ser Maytor a la Fecha Final');
+
+    }
+
+    $ModulosTotales = $reserva->Modulos;
+    if($reserva->Fecha_inicio >= $validate['Fecha_fin']){//verificar cuando el inicio y final es antes del antiguo inicio
+        $Fecha_i= $validate['Fecha_inicio'];
+        $Fecha_f = $validate['Fecha_fin'];
+        $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
+        if($datos){
+            return back()->with(compact('datos')); 
+        };            
+        $eventos = Event::where('id_reserva',$reserva->id)
+        ->whereDate('start','>=',$reserva->Fecha_inicio)
+        ->whereDate('start','<=',$reserva->Fecha_fin)
+        ->get();
+        $ArregloEvento=$eventos->toArray();
+        foreach ($ArregloEvento as $evento) {
+            $codigo = $evento['id'];
+            Event::destroy($codigo);
+        }
+        $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
+    }
+
+    
+    elseif($reserva->Fecha_fin <= $validate['Fecha_fin']){      //Revisa Si la Fecha final original es menor o igual a la Fecha Fin nueva
+        $Fecha_i= $validate['Fecha_inicio'];
+        $Fecha_f = $validate['Fecha_fin'];
+        $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
+        if($datos){
+            return back()->with(compact('datos')); 
+        };            
+        $eventos = Event::where('id_reserva',$reserva->id)
+        ->whereDate('start','>=',$reserva->Fecha_inicio)
+        ->whereDate('start','<=',$reserva->Fecha_fin)
+        ->get();
+        $ArregloEvento=$eventos->toArray();
+        foreach ($ArregloEvento as $evento) {
+            $codigo = $evento['id'];
+            Event::destroy($codigo);
+        }
+        $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
+    }
+    else{
+
+        if($reserva->Fecha_inicio > $validate['Fecha_inicio']){      //Revisa si la Fecha de Inicio Original es mayor a la fecha del fomrulario
+            $Fecha_i= $validate['Fecha_inicio'];
+            $Fecha_f = Carbon::parse($reserva->Fecha_inicio)->addDays(-1);            //Se resta un día del índice
+            $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
+            if($datos){
+                return back()->with(compact('datos')); 
+            }; 
+        }
+
+        if($reserva->Fecha_fin < $validate['Fecha_fin']){          //Revisa si la fecha final de origen es menor a la Fecha Fin ingresada del formulario
+            $Fecha_i= Carbon::parse($reserva->Fecha_fin)->addDays(1);
+            $Fecha_f = $validate['Fecha_fin'];
+            $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
+            if($datos){
+                return back()->with(compact('datos')); 
+            }; 
+        }
+        if($reserva->fecha_inicial > $validate['Fecha_inicio']){         //Comprueba si está correctamente la Fecha original con la nueva
+            $Fecha_i= $validate['Fecha_inicio'];
+            $Fecha_f = $reserva->Fecha_inicio;
+            $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
+        }
+        if($reserva->Fecha_fin < $validate['Fecha_fin']){               //Recorre hasta la fecha Final
+            $Fecha_i= $reserva->Fecha_fin;
+            $Fecha_f = $validate['Fecha_fin'];
+            $this->guardado($Fecha_i,$ModulosTotales,$Fecha_f,$validate,$reserva );
+        }
+        if($reserva->Fecha_inicio < $validate['Fecha_inicio']){          //Recorre hasta la fecha inicial
+            $eventos = Event::where('reserva_id',$reserva->id)
+            ->whereDate('start','>=',$reserva->Fecha_inicio)
+            ->whereDate('start','<',$validate['Fecha_inicio'])
+            ->get();
+            $ArregloEvento=$eventos->toArray();
+            foreach ($ArregloEvento as $evento) {
+                $codigo = $evento['id'];
+                Event::destroy($codigo);
+            }
+        }
+        if($reserva->Fecha_fin > $validate['Fecha_fin']){              //Fecha final hasta el final
+            $eventos = Event::where('reserva_id',$reserva->id)
+            ->whereDate('start','>',$validate['Fecha_fin'])
+            ->whereDate('start','<=',$reserva->Fecha_fin)
+            ->get();
+            $ArregloEvento=$eventos->toArray();
+            foreach ($ArregloEvento as $evento) {
+              $codigo = $evento['id'];
+              Event::destroy($codigo);
+            }
+        }
+    }
+          $reserva->Fecha_inicio = $validate['Fecha_inicio'];
+          $reserva->Fecha_fin = $validate['Fecha_fin'];
+          $reserva->save();
+          return back()->with('success', 'CORRECTO!. La fecha se ha cambiado Correctamente');
+          
+
+
+
+
+
     }
 
 

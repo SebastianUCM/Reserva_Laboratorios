@@ -33,11 +33,22 @@ Route::resource('Reservas', 'ReservasController');
 
 Route::resource('User', 'UsuariosController');
 
+
+
+#Rutas para modificar los módulos
 Route::get('/Reservas/{reserva}/Modulos', 'ReservasController@ActualizarModulo');
 Route::put('/Reservas/{reserva}/Modulos_update', 'ReservasController@ModificarModulos');
 
+
+#Rutas para Desactivar Fechas por periodos
 Route::get('/Reservas/{reserva}/desactivar', 'ReservasController@desactivarFecha');
 Route::put('/Reservas/{reserva}/desactivar_Fechas', 'ReservasController@desocuparFecha');
+
+
+
+#Rutas para Modificar Fechas
+Route::get('/Reservas/{reserva}/ModFechas', 'ReservasController@VistaModFechas');
+Route::put('/Reservas/{reserva}/FechaModificacion', 'ReservasController@ModificarFecha');
 
 
 

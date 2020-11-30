@@ -18,7 +18,7 @@
     @section('content')
     <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-white card-dark bg-primary ">{{ __('Listado de Reservas') }}
                     <ul class="navbar-nav ml-auto">
@@ -109,14 +109,11 @@
                             
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                             <td>
-                                <form method="GET" action="/Reservas/{{$resev->id}}/edit">
+                                <form method="GET" action="/Reservas/{{$resev->id}}/ModFechas">
                                     <button type="submit" class="btn btn-warning">Fecha</button>
                                 </form>
                                 <form method="GET" action="{{ url('/Reservas/'.$resev->id.'/Modulos')}}">
                                     <button type="submit" class="btn btn-warning">Modulos</button>
-                                </form>
-                                <form method="GET" action="/Reservas/{{$resev->id}}/desactivar">
-                                    <button type="submit" class="btn btn-warning">Desact.Fecha</button>
                                 </form>
                             </td>
 
@@ -126,6 +123,9 @@
                                     {{csrf_field()}}
                                     @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
+                                </form>
+                                <form method="GET" action="/Reservas/{{$resev->id}}/desactivar">
+                                    <button type="submit" class="btn btn-Secondary">Desact.Fecha</button>
                                 </form>
                             </td>
                             @endif
