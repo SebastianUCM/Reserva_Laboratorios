@@ -18,7 +18,7 @@ class AgendaController extends Controller
         $laboratorios = Laboratorios::all();
         $lab = $request->get('id');
 
-        $eventos= DB::table('events')->where('Laboratorio_id','like',"%$lab%")
+        $eventos= DB::table('events')->where('laboratorio_id','like',"%$lab%")
         ->select('id','title','start','laboratorio_id','usuario_id','reserva_id')->get();
 
         //dd($datos_Eventos);

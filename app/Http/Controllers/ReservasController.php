@@ -685,9 +685,38 @@ class ReservasController extends Controller
           'Motivo'=>'required',
           'Laboratorio_id'=>'required',
           'Usuario_id'=>'required',
-          'inicio_inactivacion' => ['required','after:'.$request['Fecha_inicio'], 'before:'.$request['Fecha_fin'],'before:'.$request['fin_inactivacion']],
-          'fin_inactivacion'=>['required','after:'.$request['Fecha_inicio'],'before:'.$request['Fecha_fin'],'after:'.$request['inicio_inactivacion']],
+          'inicio_inactivacion' => 'required',
+          'fin_inactivacion'=>'required',
       ]);
+
+
+      //Restricciones
+
+      if($validate['inicio_inactivacion'] < $validate['Fecha_inicio']){
+        return back()->with('failure', 'ERROR!. El inicio de desactivación es menor a la Fecha Inicio Original');
+
+      }
+      if($validate['inicio_inactivacion'] > $validate['Fecha_fin']){
+        return back()->with('failure', 'ERROR!. El inicio de desactivación es mayor a la Fecha Final');
+
+      }
+      if($validate['inicio_inactivacion'] > $validate['fin_inactivacion']){
+        return back()->with('failure', 'ERROR!. El inicio de desactivación es mayor a la Fecha Final');
+
+      }
+
+      if($validate['fin_inactivacion'] < $validate['Fecha_inicio']){
+        return back()->with('failure', 'ERROR!. El inicio de desactivación es mayor a la Fecha Final');
+
+      }
+      if($validate['fin_inactivacion'] > $validate['Fecha_fin']){
+        return back()->with('failure', 'ERROR!. El fin de desactivación es mayor a la Fecha Final');
+
+      }
+      if($validate['fin_inactivacion'] > $validate['Fecha_fin']){
+        return back()->with('failure', 'ERROR!. El fin de desactivación es mayor a la Fecha Inicio');
+
+      }
 
       $eventos= Event::where('reserva_id','=',$reserva->id)          //Busco En la tabla de Eventos si la Id de la tabla reserva está en la tabla de Eventos
       ->whereDate('start','>=',$validate['inicio_inactivacion'])
@@ -738,7 +767,7 @@ class ReservasController extends Controller
         if($datos){
             return back()->with(compact('datos')); 
         };            
-        $eventos = Event::where('id_reserva',$reserva->id)
+        $eventos = Event::where('reserva_id',$reserva->id)
         ->whereDate('start','>=',$reserva->Fecha_inicio)
         ->whereDate('start','<=',$reserva->Fecha_fin)
         ->get();
@@ -757,8 +786,10 @@ class ReservasController extends Controller
         $datos = $this->verificar_disp($Fecha_i,$Fecha_f,$ModulosTotales,$validate);
         if($datos){
             return back()->with(compact('datos')); 
-        };            
-        $eventos = Event::where('id_reserva',$reserva->id)
+        };
+        
+        //Recorro la tabla de eventos para eliminar los datos de eventos cuando se modifican las fechas
+        $eventos = Event::where('reserva_id',$reserva->id)
         ->whereDate('start','>=',$reserva->Fecha_inicio)
         ->whereDate('start','<=',$reserva->Fecha_fin)
         ->get();
@@ -809,7 +840,7 @@ class ReservasController extends Controller
                 Event::destroy($codigo);
             }
         }
-        if($reserva->Fecha_fin > $validate['Fecha_fin']){              //Fecha final hasta el final
+        if($reserva->Fecha_fin > $validate['Fecha_fin']){           //Recorro hasta la última fecha final    
             $eventos = Event::where('reserva_id',$reserva->id)
             ->whereDate('start','>',$validate['Fecha_fin'])
             ->whereDate('start','<=',$reserva->Fecha_fin)
@@ -826,9 +857,6 @@ class ReservasController extends Controller
           $reserva->save();
           return back()->with('success', 'CORRECTO!. La fecha se ha cambiado Correctamente');
           
-
-
-
 
 
     }
