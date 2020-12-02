@@ -26,23 +26,30 @@
                             <a href="/Reservas/create" class="btn btn-success">Crear una Reserva</a>
                         @endif
                     </ul>
-
+                    <br>
                     <ul class="navbar-nav ml-auto">
-                    <form class="form-inline">
-                        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
-                        <!--<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"> !-->
-                        <select class="form-control mr-2" name="Laboratorio_id" id="Laboratorio_id" size=1>
-                        <option selected="false" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>
-                        @foreach($laboratorios as $laboratorio)
-                            <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
-                            
-                        @endforeach
-                        </select>
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-                        <a href="/Reservas" class="btn btn-danger">Quitar Busqueda</a>
+                    @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
+                        <form class="form-inline">
+                        
+                           
+                            <div class="col-xs-6">
+                            <select class="form-control mr-2" name="Laboratorio_id" id="Laboratorio_id" size=1>
+                            <option selected="false" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>
+                            @foreach($laboratorios as $laboratorio)
+                                <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
+                                
+                            @endforeach
+                            </select>
+                            </div>
+                            <div class="col-3">
+                            <button class="btn btn-secondary my-2 my-sm-0 btn-block" type="submit">Buscar</button>
+                            </div>
+                            <div class="col-3">
+                            <a href="/Reservas" class="btn btn-danger btn-block ">Quitar Busqueda</a>
+                            </div>
                         
                         </form>
-                        @endif
+                    @endif
                     </ul>
 
 
@@ -110,10 +117,10 @@
                             @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
                             <td>
                                 <form method="GET" action="/Reservas/{{$resev->id}}/ModFechas">
-                                    <button type="submit" class="btn btn-warning">Fecha</button>
+                                    <button type="submit" class="btn btn-warning btn-block">Fecha</button>
                                 </form>
                                 <form method="GET" action="{{ url('/Reservas/'.$resev->id.'/Modulos')}}">
-                                    <button type="submit" class="btn btn-warning">Modulos</button>
+                                    <button type="submit" class="btn btn-warning btn-block">Modulos</button>
                                 </form>
                             </td>
 
@@ -122,10 +129,10 @@
                                 <form method="POST" action="/Reservas/{{$resev->id}}">
                                     {{csrf_field()}}
                                     @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Borrar?');">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Borrar?');">Eliminar</button>
                                 </form>
                                 <form method="GET" action="/Reservas/{{$resev->id}}/desactivar">
-                                    <button type="submit" class="btn btn-Secondary">Desact.Fecha</button>
+                                    <button type="submit" class="btn btn-Secondary btn-block">Desact.Fecha</button>
                                 </form>
                             </td>
                             @endif
