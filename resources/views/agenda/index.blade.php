@@ -84,26 +84,34 @@
   <div class="row">
         <div class="col"></div>
         <div class="col-7">
+
+        @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
         <form class="form-inline">
-          @if(Auth::user()->rol == 'Secretario/a' or Auth::user()->rol == 'Encargado/a' or Auth::user()->rol == 'Administrador'or Auth::user()->rol == 'Alumno' or Auth::user()->rol == 'Profesor')
-          <!--<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"> !-->
-          <select class="form-control mr-2" name="id" id="id" size=1>
-          <option selected="false" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>
-          @foreach($laboratorios as $laboratorio)
-              <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
-              
-          @endforeach
-          </select>
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-          <a href="/agenda" class="btn btn-danger">Quitar Busqueda</a>
+          <div class="col-xs-6">
+            <select class="form-control mr-2" name="id" id="id" size=1>
+            <option selected="false" disabled="disabled">--SELECCIONE UNA OPCIÓN--</option>
+            @foreach($laboratorios as $laboratorio)
+                <option value="{{$laboratorio->id}}">{{$laboratorio->Nombre}}</option>
+                
+            @endforeach
+            </select>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary my-2 my-sm-0 btn-block" type="submit">Buscar</button>
+          </div>
+          <div class="col-3">
+            <a href="/agenda" class="btn btn-danger btn-block">Quitar Busqueda</a>
+          </div>
           
           </form>
-          @endif
+        @endif
+      <br>
       </ul>
 
 
 
-          <div id='calendar'></div></div>
+        <div id='calendar'></div>
+        </div>
         <div class="col"></div>
   </div>
 
